@@ -10,8 +10,11 @@ repository="https://github.com/itusweng/group22"
 
 [tool.poetry.dependencies]
 python = "^3.7"
+Flask = "^2.0.2"
 
 [tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+black = "^21.12b0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

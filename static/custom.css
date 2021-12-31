@@ -1,0 +1,19 @@
+.pref-groups {
+  display: inline-block;
+}
+
+.pref-radio-group {
+  margin-top: 20px;
+  display: inline-flex;
+  background-color: #ddd9d9;
+  padding: 1.5% 10%;
+}
+
+.pref-radio-group > *:not(:last-child) {
+  margin-right: 30px;
+}
+
+.charts {
+  margin-top: 40px;
+  display: flex;
+}

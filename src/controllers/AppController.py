@@ -21,3 +21,6 @@ def home_page():
     print(layouts_rate)
     
     return render_template("app.html")
+
+def preference_page():
+    return render_template("preference.html")

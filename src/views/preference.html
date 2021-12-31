@@ -1,0 +1,125 @@
+{% extends "layout.html" %} {% block title %} Preference {% endblock %} {% block
+content %}
+
+<div class="container text-center">
+  <h2 class="">Select Metric and Layout</h2>
+  <div class="pref-groups">
+    <div class="pref-radio-group">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="metric1"
+          id="metric1"
+          checked
+        />
+        <label class="form-check-label" for="metric1"> metric1 </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="metric2"
+          id="metric2"
+        />
+        <label class="form-check-label" for="metric2"> metric2 </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="metric3"
+          id="metric3"
+        />
+        <label class="form-check-label" for="metric3"> metric3 </label>
+      </div>
+    </div>
+    <div class="pref-radio-group">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="layout1"
+          id="layout1"
+          checked
+        />
+        <label class="form-check-label" for="layout1"> layout1 </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="layout2"
+          id="layout2"
+        />
+        <label class="form-check-label" for="layout2"> layout2 </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="layout3"
+          id="layout3"
+        />
+        <label class="form-check-label" for="layout3"> layout3 </label>
+      </div>
+    </div>
+  </div>
+  <div class="charts">
+    <canvas id="metricChart" width="600" height="400"></canvas>
+    <canvas id="layoutChart" width="600" height="400"></canvas>
+  </div>
+</div>
+<script src="static/prefChart.js"></script>
+<script>
+  Chart.defaults.global.responsive = false;
+
+  // define the chart data
+  var metricData = {
+    labels: ["Metric 1", "Metric 2", "Metric 3"],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: [300, 50, 100],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+        ],
+        hoverOffset: 4,
+      },
+    ],
+  };
+  // get chart canvas
+  var ctx = document.getElementById("metricChart").getContext("2d");
+  // create the chart using the chart canvas
+  var metricChart = new Chart(ctx, {
+    type: "doughnut",
+    data: metricData,
+  });
+
+  var layoutData = {
+    labels: ["Layout 1", "Layout 2", "Layout 3"],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: [200, 150, 90],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+        ],
+        hoverOffset: 4,
+      },
+    ],
+  };
+  // get chart canvas
+  var ctx = document.getElementById("layoutChart").getContext("2d");
+  // create the chart using the chart canvas
+  var layoutChart = new Chart(ctx, {
+    type: "doughnut",
+    data: layoutData,
+  });
+</script>
+
+{% endblock content %}

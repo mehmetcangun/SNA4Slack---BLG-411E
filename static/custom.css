@@ -1,3 +1,8 @@
+body {
+  background-color: #3b3636;
+  color: white;
+}
+
 .pref-groups {
   display: inline-block;
 }
@@ -7,6 +12,7 @@
   display: inline-flex;
   background-color: #ddd9d9;
   padding: 1.5% 10%;
+  color: black;
 }
 
 .pref-radio-group > *:not(:last-child) {
@@ -16,4 +22,9 @@
 .charts {
   margin-top: 40px;
   display: flex;
+}
+
+.find-metric-btn {
+  width: 60% !important;
+  background-color: black;
 }

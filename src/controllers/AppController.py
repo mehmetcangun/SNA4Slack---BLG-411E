@@ -1,4 +1,4 @@
-from flask import render_template, request, session
+from flask import render_template, request, session, redirect
 
 from .UserController import save_user, get_user_count, get_user_count_having_files
 from .SNAController import get_rate
@@ -24,3 +24,10 @@ def home_page():
 
 def preference_page():
     return render_template("preference.html")
+
+def evaluate_metric_layout():
+    metric = request.form['metric']
+    layout = request.form['layout']
+    print(metric)
+    print(layout)
+    return redirect('/')

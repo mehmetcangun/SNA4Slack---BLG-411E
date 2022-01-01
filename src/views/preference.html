@@ -3,72 +3,85 @@ content %}
 
 <div class="container text-center">
   <h2 class="">Select Metric and Layout</h2>
-  <div class="pref-groups">
-    <div class="pref-radio-group">
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="metric1"
-          id="metric1"
-          checked
-        />
-        <label class="form-check-label" for="metric1"> metric1 </label>
+  <form action="{{ url_for('evaluate_metric_layout') }}" method="post">
+    <div class="pref-groups">
+      <div class="pref-radio-group">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="metric"
+            id="metric1"
+            value="metric1"
+            checked
+          />
+          <label class="form-check-label" for="metric1"> metric1 </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="metric"
+            id="metric2"
+            value="metric2"
+          />
+          <label class="form-check-label" for="metric2"> metric2 </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="metric"
+            id="metric3"
+            value="metric3"
+          />
+          <label class="form-check-label" for="metric3"> metric3 </label>
+        </div>
       </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="metric2"
-          id="metric2"
-        />
-        <label class="form-check-label" for="metric2"> metric2 </label>
-      </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="metric3"
-          id="metric3"
-        />
-        <label class="form-check-label" for="metric3"> metric3 </label>
+      <div class="pref-radio-group">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="layout"
+            id="layout1"
+            value="layout1"
+            checked
+          />
+          <label class="form-check-label" for="layout1"> layout1 </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="layout"
+            id="layout2"
+            value="layout2"
+          />
+          <label class="form-check-label" for="layout2"> layout2 </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="layout"
+            id="layout3"
+            value="layout3"
+          />
+          <label class="form-check-label" for="layout3"> layout3 </label>
+        </div>
       </div>
     </div>
-    <div class="pref-radio-group">
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="layout1"
-          id="layout1"
-          checked
-        />
-        <label class="form-check-label" for="layout1"> layout1 </label>
-      </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="layout2"
-          id="layout2"
-        />
-        <label class="form-check-label" for="layout2"> layout2 </label>
-      </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="layout3"
-          id="layout3"
-        />
-        <label class="form-check-label" for="layout3"> layout3 </label>
-      </div>
+    <div class="charts">
+      <canvas id="metricChart" width="600" height="400"></canvas>
+      <canvas id="layoutChart" width="600" height="400"></canvas>
     </div>
-  </div>
-  <div class="charts">
-    <canvas id="metricChart" width="600" height="400"></canvas>
-    <canvas id="layoutChart" width="600" height="400"></canvas>
-  </div>
+    <div>
+      <button type="submit" class="btn btn-dark mt-5 find-metric-btn">
+        FIND THE METRICS
+      </button>
+    </div>
+  <form>
 </div>
 <script src="static/prefChart.js"></script>
 <script>

@@ -1,0 +1,15 @@
+  
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2 style="color: #132A3A; text-align: center;" >Upload a Slack Zip File</h2>
+  <nav style="color: #132A3A; text-align: center;">
+    <hr/>
+    <img src="https://image.shutterstock.com/image-vector/mouse-cursor-clicks-upload-button-600w-162757685.jpg" height=400 alt="">
+    <hr/>
+    <form method=post enctype=multipart/form-data>
+      <input type=file name=file>
+      <input type=submit value=Upload>
+    </form>
+  </nav>
+{% endblock content %}

@@ -14,15 +14,18 @@ def home_page():
     print(f"{get_user_count()}")
     print(f"{get_user_count_having_files()}")
 
-    metrics_rate = get_rate("metric")
+    metric_labels, metrics_rate = get_rate("metric")
+    print(metric_labels)
     print(metrics_rate)
     
-    layouts_rate = get_rate("layout")
+    layout_labels, layouts_rate = get_rate("layout")
+    print(layout_labels)
     print(layouts_rate)
     
     return render_template("app.html")
 
 def preference_page():
+    
     return render_template("preference.html")
 
 def evaluate_metric_layout():

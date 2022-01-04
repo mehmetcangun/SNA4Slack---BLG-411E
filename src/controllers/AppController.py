@@ -2,6 +2,7 @@ from flask import render_template, request, session, redirect
 
 from .UserController import save_user, get_user_count, get_user_count_having_files
 from .SNAController import get_rate
+import random
 
 def home_page():
     if request.method == "GET":
@@ -23,7 +24,10 @@ def home_page():
     return render_template("app.html")
 
 def preference_page():
-    return render_template("preference.html")
+
+    colors = ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
+             for i in range(5)]
+    return render_template("preference.html", colors=colors)
 
 def evaluate_metric_layout():
     metric = request.form['metric']

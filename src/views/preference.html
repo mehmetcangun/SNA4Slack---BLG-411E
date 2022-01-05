@@ -6,70 +6,34 @@ content %}
   <form action="{{ url_for('evaluate_metric_layout') }}" method="post">
     <div class="pref-groups">
       <div class="pref-radio-group">
+        {%for item in metric_data[0] %}
         <div class="form-check">
           <input
             class="form-check-input"
             type="radio"
             name="metric"
-            id="metric1"
-            value="metric1"
-            checked
+            id="{{ item }}"
+            value="{{ item }}"
+            {{ "checked" if loop.index == 1 else "" }}
           />
-          <label class="form-check-label" for="metric1"> metric1 </label>
+          <label class="form-check-label" for="{{ item }}"> {{ item }} </label>
         </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="metric"
-            id="metric2"
-            value="metric2"
-          />
-          <label class="form-check-label" for="metric2"> metric2 </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="metric"
-            id="metric3"
-            value="metric3"
-          />
-          <label class="form-check-label" for="metric3"> metric3 </label>
-        </div>
+        {%endfor%}
       </div>
       <div class="pref-radio-group">
+        {%for item in layout_data[0] %}
         <div class="form-check">
           <input
             class="form-check-input"
             type="radio"
             name="layout"
-            id="layout1"
-            value="layout1"
-            checked
+            id="{{ item }}"
+            value="{{ item }}"
+            {{ "checked" if loop.index == 1 else "" }}
           />
-          <label class="form-check-label" for="layout1"> layout1 </label>
+          <label class="form-check-label" for="{{ item }}"> {{ item }} </label>
         </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="layout"
-            id="layout2"
-            value="layout2"
-          />
-          <label class="form-check-label" for="layout2"> layout2 </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="layout"
-            id="layout3"
-            value="layout3"
-          />
-          <label class="form-check-label" for="layout3"> layout3 </label>
-        </div>
+        {%endfor%}
       </div>
     </div>
     <div class="charts">
@@ -85,20 +49,27 @@ content %}
 </div>
 <script src="static/prefChart.js"></script>
 <script>
-  Chart.defaults.global.responsive = false;
+  const COLORS = [
+    '#4dc9f6',
+    '#f67019',
+    '#f53794',
+    '#537bc4',
+    '#acc236',
+    '#166a8f',
+    '#00a950',
+    '#58595b',
+    '#8549ba'
+  ];
 
+  Chart.defaults.global.responsive = false;
   // define the chart data
   var metricData = {
-    labels: ["Metric 1", "Metric 2", "Metric 3"],
+    labels: {{ metric_data[0] | safe }},
     datasets: [
       {
-        label: "My First Dataset",
-        data: [300, 50, 100],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
+        label: "Metric Dataset",
+        data: {{ metric_data[1] | safe }},
+        backgroundColor: COLORS,
         hoverOffset: 4,
       },
     ],
@@ -109,19 +80,23 @@ content %}
   var metricChart = new Chart(ctx, {
     type: "doughnut",
     data: metricData,
+    options: { 
+      legend: {
+          labels: {
+              fontColor: "white",
+              fontSize: 16
+          }
+      },
+    }
   });
 
   var layoutData = {
-    labels: ["Layout 1", "Layout 2", "Layout 3"],
+    labels: {{ layout_data[0] | safe }},
     datasets: [
       {
         label: "My First Dataset",
-        data: [200, 150, 90],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
+        data: {{ layout_data[1] | safe }},
+        backgroundColor: COLORS.reverse(),
         hoverOffset: 4,
       },
     ],
@@ -132,6 +107,14 @@ content %}
   var layoutChart = new Chart(ctx, {
     type: "doughnut",
     data: layoutData,
+    options: { 
+      legend: {
+          labels: {
+              fontColor: "white",
+              fontSize: 16
+          }
+      },
+    }
   });
 </script>
 

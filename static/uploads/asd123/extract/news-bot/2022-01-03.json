@@ -1,0 +1,231 @@
+[
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641245160.000200",
+        "user": "U02SFTK3961",
+        "text": "<@U02SFTK3961> has joined the channel"
+    },
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641245163.000500",
+        "user": "U02S4892VE3",
+        "text": "<@U02S4892VE3> has joined the channel",
+        "inviter": "U02SFTK3961"
+    },
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641245263.000900",
+        "user": "U02SG22Q79T",
+        "text": "<@U02SG22Q79T> has joined the channel",
+        "inviter": "U02SFTK3961"
+    },
+    {
+        "client_msg_id": "ed40a027-9f2c-4515-a6da-631b68d06a59",
+        "type": "message",
+        "text": "<@U02SG22Q79T>",
+        "user": "U02SFTK3961",
+        "ts": "1641245279.001100",
+        "team": "T02T8HEFFBJ",
+        "user_team": "T02T8HEFFBJ",
+        "source_team": "T02T8HEFFBJ",
+        "user_profile": {
+            "avatar_hash": "gac35da9856a",
+            "image_72": "https:\/\/secure.gravatar.com\/avatar\/ac35da9856aaadd0feb146f212da19af.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0019-72.png",
+            "first_name": "mehmetcangun14",
+            "real_name": "mehmetcangun14",
+            "display_name": "",
+            "team": "T02T8HEFFBJ",
+            "name": "mehmetcangun14",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "Ww9tU",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "user",
+                                "user_id": "U02SG22Q79T"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "message",
+        "subtype": "bot_message",
+        "text": "This content can't be displayed.",
+        "ts": "1641245286.001200",
+        "bot_id": "B02SC9ADG0N",
+        "blocks": [
+            {
+                "type": "section",
+                "block_id": "VpjJY",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*Your Recommended Read*\n_New York Times editors pick a story every day, and pass it on to you._\n\n*<https:\/\/www.nytimes.com\/2022\/01\/03\/science\/red-wolves-dna-galveston.html?partner=slack&amp;smid=sl-recommended|The Ghost Wolves of Galveston Island>*\nA population of strange canids in Texas could hold the key to reviving the highly endangered red wolf.",
+                    "verbatim": false
+                }
+            },
+            {
+                "type": "image",
+                "block_id": "uUb31",
+                "image_url": "https:\/\/static01.nyt.com\/images\/2021\/12\/28\/science\/00SCI-REDWOLVES-promo-a\/00SCI-REDWOLVES-promo-a-largeHorizontalJumbo.jpg",
+                "alt_text": "Photo credit: Tristan Spinski for The New York Times",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Photo credit: Tristan Spinski for The New York Times",
+                    "emoji": true
+                },
+                "fallback": "1024x683px image",
+                "image_width": 1024,
+                "image_height": 683,
+                "image_bytes": 76445
+            },
+            {
+                "type": "section",
+                "block_id": "6ZXaM",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": " ",
+                    "verbatim": false
+                },
+                "accessory": {
+                    "type": "button",
+                    "action_id": "read_later",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Read later",
+                        "emoji": true
+                    },
+                    "value": "https:\/\/www.nytimes.com\/2022\/01\/03\/science\/red-wolves-dna-galveston.html"
+                }
+            },
+            {
+                "type": "divider",
+                "block_id": "vu=As"
+            }
+        ]
+    },
+    {
+        "type": "message",
+        "subtype": "bot_message",
+        "text": "This content can't be displayed.",
+        "ts": "1641245307.001400",
+        "bot_id": "B02SC9ADG0N",
+        "blocks": [
+            {
+                "type": "section",
+                "block_id": "eWEZ",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*Your Recommended Read*\n_New York Times editors pick a story every day, and pass it on to you._\n\n*<https:\/\/www.nytimes.com\/2022\/01\/03\/science\/red-wolves-dna-galveston.html?partner=slack&amp;smid=sl-recommended|The Ghost Wolves of Galveston Island>*\nA population of strange canids in Texas could hold the key to reviving the highly endangered red wolf.",
+                    "verbatim": false
+                }
+            },
+            {
+                "type": "image",
+                "block_id": "UDo",
+                "image_url": "https:\/\/static01.nyt.com\/images\/2021\/12\/28\/science\/00SCI-REDWOLVES-promo-a\/00SCI-REDWOLVES-promo-a-largeHorizontalJumbo.jpg",
+                "alt_text": "Photo credit: Tristan Spinski for The New York Times",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Photo credit: Tristan Spinski for The New York Times",
+                    "emoji": true
+                },
+                "fallback": "1024x683px image",
+                "image_width": 1024,
+                "image_height": 683,
+                "image_bytes": 76445
+            },
+            {
+                "type": "section",
+                "block_id": "uiXW",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": " ",
+                    "verbatim": false
+                },
+                "accessory": {
+                    "type": "button",
+                    "action_id": "read_later",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Read later",
+                        "emoji": true
+                    },
+                    "value": "https:\/\/www.nytimes.com\/2022\/01\/03\/science\/red-wolves-dna-galveston.html"
+                }
+            },
+            {
+                "type": "divider",
+                "block_id": "uAN"
+            }
+        ]
+    },
+    {
+        "type": "message",
+        "subtype": "bot_message",
+        "text": "This content can't be displayed.",
+        "ts": "1641245336.001500",
+        "bot_id": "B02SC9ADG0N",
+        "blocks": [
+            {
+                "type": "section",
+                "block_id": "RbBO",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*Your Recommended Read*\n_New York Times editors pick a story every day, and pass it on to you._\n\n*<https:\/\/www.nytimes.com\/2022\/01\/03\/science\/red-wolves-dna-galveston.html?partner=slack&amp;smid=sl-recommended|The Ghost Wolves of Galveston Island>*\nA population of strange canids in Texas could hold the key to reviving the highly endangered red wolf.",
+                    "verbatim": false
+                }
+            },
+            {
+                "type": "image",
+                "block_id": "r5o",
+                "image_url": "https:\/\/static01.nyt.com\/images\/2021\/12\/28\/science\/00SCI-REDWOLVES-promo-a\/00SCI-REDWOLVES-promo-a-largeHorizontalJumbo.jpg",
+                "alt_text": "Photo credit: Tristan Spinski for The New York Times",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Photo credit: Tristan Spinski for The New York Times",
+                    "emoji": true
+                },
+                "fallback": "1024x683px image",
+                "image_width": 1024,
+                "image_height": 683,
+                "image_bytes": 76445
+            },
+            {
+                "type": "section",
+                "block_id": "pXIx",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": " ",
+                    "verbatim": false
+                },
+                "accessory": {
+                    "type": "button",
+                    "action_id": "read_later",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Read later",
+                        "emoji": true
+                    },
+                    "value": "https:\/\/www.nytimes.com\/2022\/01\/03\/science\/red-wolves-dna-galveston.html"
+                }
+            },
+            {
+                "type": "divider",
+                "block_id": "ufUA"
+            }
+        ]
+    }
+]

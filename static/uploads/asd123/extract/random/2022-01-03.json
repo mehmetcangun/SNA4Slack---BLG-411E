@@ -1,0 +1,16 @@
+[
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641242793.000200",
+        "user": "U02SFTK3961",
+        "text": "<@U02SFTK3961> has joined the channel"
+    },
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641243420.000400",
+        "user": "U02S4892VE3",
+        "text": "<@U02S4892VE3> has joined the channel"
+    }
+]

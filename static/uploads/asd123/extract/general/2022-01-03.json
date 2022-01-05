@@ -1,0 +1,113 @@
+[
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641242793.000200",
+        "user": "U02SFTK3961",
+        "text": "<@U02SFTK3961> has joined the channel"
+    },
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641243420.000400",
+        "user": "U02S4892VE3",
+        "text": "<@U02S4892VE3> has joined the channel"
+    },
+    {
+        "client_msg_id": "42882c0e-edc4-47e3-80c5-177f52718100",
+        "type": "message",
+        "text": "<https:\/\/en.wikipedia.org\/wiki\/Social_network_analysis>",
+        "user": "U02SFTK3961",
+        "ts": "1641245793.000600",
+        "team": "T02T8HEFFBJ",
+        "user_team": "T02T8HEFFBJ",
+        "source_team": "T02T8HEFFBJ",
+        "user_profile": {
+            "avatar_hash": "gac35da9856a",
+            "image_72": "https:\/\/secure.gravatar.com\/avatar\/ac35da9856aaadd0feb146f212da19af.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0019-72.png",
+            "first_name": "mehmetcangun14",
+            "real_name": "mehmetcangun14",
+            "display_name": "",
+            "team": "T02T8HEFFBJ",
+            "name": "mehmetcangun14",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "attachments": [
+            {
+                "image_url": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/thumb\/d\/d2\/Internet_map_1024.jpg\/1200px-Internet_map_1024.jpg",
+                "image_width": 1200,
+                "image_height": 1200,
+                "image_bytes": 496399,
+                "from_url": "https:\/\/en.wikipedia.org\/wiki\/Social_network_analysis",
+                "service_icon": "https:\/\/a.slack-edge.com\/80588\/img\/unfurl_icons\/wikipedia.png",
+                "id": 1,
+                "original_url": "https:\/\/en.wikipedia.org\/wiki\/Social_network_analysis",
+                "fallback": "wikipedia: Social network analysis",
+                "text": "Social network analysis (SNA) is the process of investigating social structures  through the use of networks and graph theory. It characterizes networked structures in terms of nodes (individual actors, people, or things within the network) and the ties, edges, or links (relationships or interactions) that connect them.  Examples of social structures commonly visualized through social network analysis include social media networks, memes spread, information circulation, friendship and acquaintance networks, business networks, knowledge networks, difficult working relationships, social networks, collaboration graphs, kinship, disease transmission, and sexual relationships. These networks are often visualized through sociograms in which nodes are represented as points and ties are represented as lines. These visualizations provide a means of qualitatively assessing networks by varying the visual representation of their nodes and edges to reflect attributes of interest.Social network analysis has emerged as a key technique in modern sociology.  It has also gained significant popularity in the following - anthropology, biology, demography, communication studies, economics, geography, history, information science, organizational studies, political science, public health,  social psychology, development studies, sociolinguistics, and computer science and is now commonly available as a consumer tool (see the list of SNA software).The advantages of SNA are twofold. Firstly, it can process a large amount of relational data and describe the overall relational network structure. tem and parameter selection to confirm the influential nodes in the network, such as in-degree and out-degree centrality. SNA context and choose which parameters to define the “center” according to the characteristics of the network. Through analyzing nodes, clusters and relations, the communication structure and position of individuals can be clearly described.",
+                "title": "Social network analysis",
+                "title_link": "https:\/\/en.wikipedia.org\/wiki\/Social_network_analysis",
+                "author_name": "Wikipedia",
+                "author_link": "https:\/\/en.wikipedia.org\/"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "AqWb",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "link",
+                                "url": "https:\/\/en.wikipedia.org\/wiki\/Social_network_analysis"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "message",
+        "text": "",
+        "files": [
+            {
+                "id": "F02T8NWCT6U",
+                "created": 1641246165,
+                "timestamp": 1641246165,
+                "name": "Groups & TAs Meetings Plan.pdf",
+                "title": "Groups &amp; TAs Meetings Plan.pdf",
+                "mimetype": "application\/pdf",
+                "filetype": "pdf",
+                "pretty_type": "PDF",
+                "user": "U02SFTK3961",
+                "editable": false,
+                "size": 24597,
+                "mode": "hosted",
+                "is_external": false,
+                "external_type": "",
+                "is_public": true,
+                "public_url_shared": false,
+                "display_as_bot": false,
+                "username": "",
+                "url_private": "https:\/\/files.slack.com\/files-pri\/T02T8HEFFBJ-F02T8NWCT6U\/groups___tas_meetings_plan.pdf?t=xoxe-2926592525392-2921400400273-2911051063684-cc057ddf773f9e850e8d9daf16764117",
+                "url_private_download": "https:\/\/files.slack.com\/files-pri\/T02T8HEFFBJ-F02T8NWCT6U\/download\/groups___tas_meetings_plan.pdf?t=xoxe-2926592525392-2921400400273-2911051063684-cc057ddf773f9e850e8d9daf16764117",
+                "media_display_type": "unknown",
+                "thumb_pdf": "https:\/\/files.slack.com\/files-tmb\/T02T8HEFFBJ-F02T8NWCT6U-c790274f92\/groups___tas_meetings_plan_thumb_pdf.png?t=xoxe-2926592525392-2921400400273-2911051063684-cc057ddf773f9e850e8d9daf16764117",
+                "thumb_pdf_w": 1286,
+                "thumb_pdf_h": 909,
+                "permalink": "https:\/\/sna4slack-test.slack.com\/files\/U02SFTK3961\/F02T8NWCT6U\/groups___tas_meetings_plan.pdf",
+                "permalink_public": "https:\/\/slack-files.com\/T02T8HEFFBJ-F02T8NWCT6U-129d5f2b2c",
+                "is_starred": false,
+                "has_rich_preview": false
+            }
+        ],
+        "upload": false,
+        "user": "U02SFTK3961",
+        "display_as_bot": false,
+        "ts": "1641246170.000800",
+        "client_msg_id": "e7e3b7e4-4a51-4f4c-8e49-9a0dcc9b8828"
+    }
+]

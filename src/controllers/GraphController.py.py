@@ -100,10 +100,12 @@ for file in json_files:
     subgraphs.append(subgraph)
 
 
-##layout id
-
+##layout id -> layout_for_graph
+##metric id -> metric_calc
 
 pos = layout_for_graph(subgraphs[0],1)
+
+
 nx.draw_networkx(G,pos,with_labels=False)
 nx.draw_networkx_labels(G,pos,userlist_id_name_dict)
 labels = nx.get_edge_attributes(G,'weight')

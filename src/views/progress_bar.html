@@ -1,0 +1,15 @@
+  
+{% extends "layout.html" %}
+<!-- num will  be connect to API -->
+
+{% block content %}
+  {% if num >= 0.6 %}
+  <img src="https://raw.githubusercontent.com/dedjou/images/main/images/3_titled.png" height=600 alt="">
+  {% elif num >= 0.4 %}
+  <img src="https://raw.githubusercontent.com/dedjou/images/main/images/2_titled.png" height=600 alt="">
+  {% elif num >= 0.2 %}
+  <img src="https://raw.githubusercontent.com/dedjou/images/main/images/1_titled.png" height=600 alt="">
+  {% else %}
+  <img src="https://raw.githubusercontent.com/dedjou/images/main/images/0_titled.png" height=600 alt="">
+  {% endif %}
+{% endblock content %}

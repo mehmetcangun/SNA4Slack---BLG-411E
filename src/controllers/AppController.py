@@ -1,7 +1,12 @@
-from flask import render_template, request, session, redirect
+import os
+from flask import flash, request, redirect, render_template, session
+from werkzeug.utils import secure_filename
 
 from .UserController import save_user, get_user_count, get_user_count_having_files
 from .SNAController import get_rate
+from .FileController import extract_file
+import random
+
 
 def home_page():
     if request.method == "GET":
@@ -14,16 +19,23 @@ def home_page():
     print(f"{get_user_count()}")
     print(f"{get_user_count_having_files()}")
 
-    metrics_rate = get_rate("metric")
+    metric_labels, metrics_rate = get_rate("metric")
+    print(metric_labels)
     print(metrics_rate)
     
-    layouts_rate = get_rate("layout")
+    layout_labels, layouts_rate = get_rate("layout")
+    print(layout_labels)
     print(layouts_rate)
     
     return render_template("app.html")
 
 def preference_page():
-    return render_template("preference.html")
+    #extract_file('asd123')
+    metric_labels, metrics_rate = get_rate("metric")
+    layout_labels, layouts_rate = get_rate("layout")
+    colors = ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
+             for i in range(max(len(metric_labels), len(layout_labels)))]
+    return render_template("preference.html", colors=colors, layout_data=[layout_labels, layouts_rate], metric_data=[metric_labels, metrics_rate])
 
 def evaluate_metric_layout():
     metric = request.form['metric']
@@ -31,3 +43,6 @@ def evaluate_metric_layout():
     print(metric)
     print(layout)
     return redirect('/')
+
+def progress_bar_page(num=0):
+    return render_template("progress_bar.html", num=num)

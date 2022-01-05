@@ -1,0 +1,340 @@
+[
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641242883.000200",
+        "user": "U02SFTK3961",
+        "text": "<@U02SFTK3961> has joined the channel"
+    },
+    {
+        "type": "message",
+        "subtype": "channel_name",
+        "ts": "1641243098.000400",
+        "user": "U02SFTK3961",
+        "text": "has renamed the channel from \"student\" to \"funny\"",
+        "old_name": "student",
+        "name": "funny"
+    },
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641243101.000600",
+        "user": "U02SFTK3961",
+        "text": "<@U02SFTK3961> has joined the channel"
+    },
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641243420.000800",
+        "user": "U02S4892VE3",
+        "text": "<@U02S4892VE3> has joined the channel"
+    },
+    {
+        "client_msg_id": "09592268-BB1A-4749-8060-8818B2BC454F",
+        "type": "message",
+        "text": "Selam",
+        "user": "U02S4892VE3",
+        "ts": "1641243432.001000",
+        "team": "T02T8HEFFBJ",
+        "user_team": "T02T8HEFFBJ",
+        "source_team": "T02T8HEFFBJ",
+        "user_profile": {
+            "avatar_hash": "2316ce81ff21",
+            "image_72": "https:\/\/avatars.slack-edge.com\/2022-01-03\/2915541545873_2316ce81ff210ab44739_72.png",
+            "first_name": "Muhammed",
+            "real_name": "Muhammed Salih Yıldız",
+            "display_name": "",
+            "team": "T02T8HEFFBJ",
+            "name": "muhammedsalihyildiz18",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "2xyLY",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "Selam"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "thread_ts": "1641243432.001000",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1641245970.001400",
+        "reply_users": [
+            "U02SFTK3961"
+        ],
+        "replies": [
+            {
+                "user": "U02SFTK3961",
+                "ts": "1641245970.001400"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": true,
+        "last_read": "1641245970.001400",
+        "reactions": [
+            {
+                "name": "eyes",
+                "users": [
+                    "U02SFTK3961"
+                ],
+                "count": 1
+            }
+        ]
+    },
+    {
+        "client_msg_id": "c4324ca4-2892-477b-be30-822b3b28c60a",
+        "type": "message",
+        "text": ":wave: Hello, team!",
+        "user": "U02SFTK3961",
+        "ts": "1641244331.001200",
+        "team": "T02T8HEFFBJ",
+        "user_team": "T02T8HEFFBJ",
+        "source_team": "T02T8HEFFBJ",
+        "user_profile": {
+            "avatar_hash": "gac35da9856a",
+            "image_72": "https:\/\/secure.gravatar.com\/avatar\/ac35da9856aaadd0feb146f212da19af.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0019-72.png",
+            "first_name": "mehmetcangun14",
+            "real_name": "mehmetcangun14",
+            "display_name": "",
+            "team": "T02T8HEFFBJ",
+            "name": "mehmetcangun14",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "61B",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "emoji",
+                                "name": "wave"
+                            },
+                            {
+                                "type": "text",
+                                "text": " Hello, team!"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "client_msg_id": "82257e7c-ea0b-44ec-b711-a392390f7b01",
+        "type": "message",
+        "text": "selamlar",
+        "user": "U02SFTK3961",
+        "ts": "1641245970.001400",
+        "team": "T02T8HEFFBJ",
+        "user_team": "T02T8HEFFBJ",
+        "source_team": "T02T8HEFFBJ",
+        "user_profile": {
+            "avatar_hash": "gac35da9856a",
+            "image_72": "https:\/\/secure.gravatar.com\/avatar\/ac35da9856aaadd0feb146f212da19af.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0019-72.png",
+            "first_name": "mehmetcangun14",
+            "real_name": "mehmetcangun14",
+            "display_name": "",
+            "team": "T02T8HEFFBJ",
+            "name": "mehmetcangun14",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "P=om",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "selamlar"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "thread_ts": "1641243432.001000",
+        "parent_user_id": "U02S4892VE3"
+    },
+    {
+        "type": "message",
+        "text": "<#C02T8HK89J4|funny> <#C02SM4YHLUU|algorithm> #ml",
+        "files": [
+            {
+                "id": "F02SXLKAVEV",
+                "created": 1641246277,
+                "timestamp": 1641246277,
+                "name": "image.png",
+                "title": "image.png",
+                "mimetype": "image\/png",
+                "filetype": "png",
+                "pretty_type": "PNG",
+                "user": "U02SFTK3961",
+                "editable": false,
+                "size": 341600,
+                "mode": "hosted",
+                "is_external": false,
+                "external_type": "",
+                "is_public": true,
+                "public_url_shared": false,
+                "display_as_bot": false,
+                "username": "",
+                "url_private": "https:\/\/files.slack.com\/files-pri\/T02T8HEFFBJ-F02SXLKAVEV\/image.png?t=xoxe-2926592525392-2921400400273-2911051063684-cc057ddf773f9e850e8d9daf16764117",
+                "url_private_download": "https:\/\/files.slack.com\/files-pri\/T02T8HEFFBJ-F02SXLKAVEV\/download\/image.png?t=xoxe-2926592525392-2921400400273-2911051063684-cc057ddf773f9e850e8d9daf16764117",
+                "media_display_type": "unknown",
+                "thumb_64": "https:\/\/files.slack.com\/files-tmb\/T02T8HEFFBJ-F02SXLKAVEV-4fd1560f21\/image_64.png?t=xoxe-2926592525392-2921400400273-2911051063684-cc057ddf773f9e850e8d9daf16764117",
+                "thumb_80": "https:\/\/files.slack.com\/files-tmb\/T02T8HEFFBJ-F02SXLKAVEV-4fd1560f21\/image_80.png?t=xoxe-2926592525392-2921400400273-2911051063684-cc057ddf773f9e850e8d9daf16764117",
+                "thumb_360": "https:\/\/files.slack.com\/files-tmb\/T02T8HEFFBJ-F02SXLKAVEV-4fd1560f21\/image_360.png?t=xoxe-2926592525392-2921400400273-2911051063684-cc057ddf773f9e850e8d9daf16764117",
+                "thumb_360_w": 360,
+                "thumb_360_h": 356,
+                "thumb_480": "https:\/\/files.slack.com\/files-tmb\/T02T8HEFFBJ-F02SXLKAVEV-4fd1560f21\/image_480.png?t=xoxe-2926592525392-2921400400273-2911051063684-cc057ddf773f9e850e8d9daf16764117",
+                "thumb_480_w": 480,
+                "thumb_480_h": 475,
+                "thumb_160": "https:\/\/files.slack.com\/files-tmb\/T02T8HEFFBJ-F02SXLKAVEV-4fd1560f21\/image_160.png?t=xoxe-2926592525392-2921400400273-2911051063684-cc057ddf773f9e850e8d9daf16764117",
+                "original_w": 640,
+                "original_h": 633,
+                "thumb_tiny": "AwAvADBM0ZpoyRkIxHsKDuAyUYD1xSGOzRmkwcZxx60bC4wMZoAXPtRk+lO8kY+5z\/v0hhB\/gx9HNOwrjEiyT8ueeu7FBi7BMN\/vZp5DgAKepAp0iHeQDkA4zmkA9CBGVb9KiUlWx+BpQpA64NJtOaENkuRux3paikGFEnAIcDml3tz80X\/fVUTYXjNB5GKKKkoTaPU0bf8AaNLRQAcUY+n5UUUAf\/\/Z",
+                "permalink": "https:\/\/sna4slack-test.slack.com\/files\/U02SFTK3961\/F02SXLKAVEV\/image.png",
+                "permalink_public": "https:\/\/slack-files.com\/T02T8HEFFBJ-F02SXLKAVEV-a942d49dfd",
+                "is_starred": false,
+                "has_rich_preview": false
+            }
+        ],
+        "upload": false,
+        "user": "U02SFTK3961",
+        "display_as_bot": false,
+        "ts": "1641246303.001900",
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "StH",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "channel",
+                                "channel_id": "C02T8HK89J4"
+                            },
+                            {
+                                "type": "text",
+                                "text": " "
+                            },
+                            {
+                                "type": "channel",
+                                "channel_id": "C02SM4YHLUU"
+                            },
+                            {
+                                "type": "text",
+                                "text": " #ml"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "client_msg_id": "30392380-4717-4957-b8ee-2a1d7bf86d8d"
+    },
+    {
+        "client_msg_id": "09706772-2f97-44c6-9400-3a85d6bbbe67",
+        "type": "message",
+        "text": "<@U02S4892VE3> sıra sende :smile:",
+        "user": "U02SFTK3961",
+        "ts": "1641246346.002500",
+        "team": "T02T8HEFFBJ",
+        "user_team": "T02T8HEFFBJ",
+        "source_team": "T02T8HEFFBJ",
+        "user_profile": {
+            "avatar_hash": "gac35da9856a",
+            "image_72": "https:\/\/secure.gravatar.com\/avatar\/ac35da9856aaadd0feb146f212da19af.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0019-72.png",
+            "first_name": "mehmetcangun14",
+            "real_name": "mehmetcangun14",
+            "display_name": "",
+            "team": "T02T8HEFFBJ",
+            "name": "mehmetcangun14",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "3Zly=",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "user",
+                                "user_id": "U02S4892VE3"
+                            },
+                            {
+                                "type": "text",
+                                "text": " sıra sende "
+                            },
+                            {
+                                "type": "emoji",
+                                "name": "smile"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "client_msg_id": "93c99a5f-4db9-48ea-8b64-482576a8fe06",
+        "type": "message",
+        "text": "<!here>",
+        "user": "U02SFTK3961",
+        "ts": "1641246355.002700",
+        "team": "T02T8HEFFBJ",
+        "user_team": "T02T8HEFFBJ",
+        "source_team": "T02T8HEFFBJ",
+        "user_profile": {
+            "avatar_hash": "gac35da9856a",
+            "image_72": "https:\/\/secure.gravatar.com\/avatar\/ac35da9856aaadd0feb146f212da19af.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0019-72.png",
+            "first_name": "mehmetcangun14",
+            "real_name": "mehmetcangun14",
+            "display_name": "",
+            "team": "T02T8HEFFBJ",
+            "name": "mehmetcangun14",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "yD\/g",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "broadcast",
+                                "range": "here"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

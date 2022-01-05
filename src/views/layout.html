@@ -23,17 +23,17 @@
     <script src="static/Chart.min.js"></script>
 
     <title>{% block title %}{% endblock %}</title>
-    >
+    
   </head>
   <body>
     <header>
-      <div class="container">Header</div>
+      {% include "includes/navbar.html" %}
     </header>
-    <section class="container-fluid mt-5 mb-5">
+    <section class="container-fluid mt-5 mb-5" style="text-align: center;">
       {% block content %}{% endblock %}
     </section>
-    <footer class="footer my-5">
-      <div class="container">Footer</div>
+    <footer class="footer my-5" style="color: #ffffff; text-align: center;">
+      <div class="container">SNA4Slack - Social Network Analysis for Slack Apps</div>
     </footer>
 
     <!-- Optional JavaScript -->

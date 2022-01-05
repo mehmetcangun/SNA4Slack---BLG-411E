@@ -1,0 +1,78 @@
+[
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641244948.000200",
+        "user": "U02SFTK3961",
+        "text": "<@U02SFTK3961> has joined the channel"
+    },
+    {
+        "type": "message",
+        "subtype": "channel_join",
+        "ts": "1641244953.000500",
+        "user": "U02S4892VE3",
+        "text": "<@U02S4892VE3> has joined the channel",
+        "inviter": "U02SFTK3961"
+    },
+    {
+        "type": "message",
+        "subtype": "channel_name",
+        "ts": "1641244962.000600",
+        "user": "U02SFTK3961",
+        "text": "has renamed the channel from \"cat-facts\" to \"cat-facts-bot\"",
+        "old_name": "cat-facts",
+        "name": "cat-facts-bot"
+    },
+    {
+        "type": "message",
+        "subtype": "bot_add",
+        "text": "added an integration to this channel: <https:\/\/sna4slack-test.slack.com\/services\/B02SC8Z8BK8|CatFacts>",
+        "user": "U02SFTK3961",
+        "bot_id": "B02SC8Z8BK8",
+        "bot_link": "<https:\/\/sna4slack-test.slack.com\/services\/B02SC8Z8BK8|CatFacts>",
+        "ts": "1641244971.000700"
+    },
+    {
+        "type": "message",
+        "subtype": "bot_message",
+        "text": "Welcome to Cat Facts!\nYou will now receive fun semi-irregular facts about CATS! :cat: :tada:",
+        "ts": "1641244972.000800",
+        "bot_id": "B02SC8Z8BK8"
+    },
+    {
+        "type": "message",
+        "text": "\/catfact ",
+        "user": "U02SFTK3961",
+        "ts": "1641245029.000900",
+        "team": "T02T8HEFFBJ",
+        "user_team": "T02T8HEFFBJ",
+        "source_team": "T02T8HEFFBJ",
+        "user_profile": {
+            "avatar_hash": "gac35da9856a",
+            "image_72": "https:\/\/secure.gravatar.com\/avatar\/ac35da9856aaadd0feb146f212da19af.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0019-72.png",
+            "first_name": "mehmetcangun14",
+            "real_name": "mehmetcangun14",
+            "display_name": "",
+            "team": "T02T8HEFFBJ",
+            "name": "mehmetcangun14",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        }
+    },
+    {
+        "type": "message",
+        "subtype": "bot_message",
+        "text": "Cat Fact 76: Cats have inferior daytime sight, but during the night they need seven times less light than humans to see.\n\n:cat: :cat: :cat:",
+        "ts": "1641245029.001000",
+        "bot_id": "B02SM85PMU4",
+        "reactions": [
+            {
+                "name": "raised_hands",
+                "users": [
+                    "U02SFTK3961"
+                ],
+                "count": 1
+            }
+        ]
+    }
+]

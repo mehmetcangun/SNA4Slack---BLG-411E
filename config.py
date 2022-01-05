@@ -2,14 +2,16 @@ SECRET_KEY = "sna4slack"
 SQLALCHEMY_DATABASE_URI = "postgresql://ftfguzup:R_qNlD8OnmwAWUol5EDgFuhuv2ioJ2L7@castor.db.elephantsql.com/ftfguzup"
 DEBUG=True
 LAYOUT = {
-    0: "bipartite_layout",
-    1: "circular_layout",
-    2: "planar_layout",
-    3: "spiral_layout"
+    0: "Bipartite Layout",
+    1: "Circular Layout",
+    2: "Planar Layout",
+    3: "Spiral Layout"
 }
 
 METRIC = {
-    0: "metric1",
-    1: "metric2",
-    2: "metric3"
+    0: "Degree Centrality",
+    1: "Bridges",
+    2: "All Pairs Node Connectivity"
 }
+
+UPLOAD_FOLDER="static/uploads"

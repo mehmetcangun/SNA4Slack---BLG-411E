@@ -1,6 +1,0 @@
-[
-{"user_id":"U02SFTK3961","user_name":"mehmetcangun14","date":"1641245192","change_type":"added","app_type":"The New York Times","app_id":"A0121HXPPTQ"},
-{"user_id":"U02SFTK3961","user_name":"mehmetcangun14","date":"1641245191","change_type":"added","app_type":"The New York Times","app_id":"A0121HXPPTQ","scope":"identify,links:read,links:write"},
-{"user_id":"U02SFTK3961","user_name":"mehmetcangun14","date":"1641244971","change_type":"added","app_type":"CatFacts","app_id":"A09K56QTC","scope":"identify,commands,incoming-webhook"},
-{"user_id":"U02SFTK3961","user_name":"mehmetcangun14","date":"1641244392","change_type":"added","app_type":"Q&A","app_id":"AAFGME4P7","scope":"identify,bot,commands,chat:write:bot"}
-]

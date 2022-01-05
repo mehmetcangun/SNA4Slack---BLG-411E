@@ -8,7 +8,6 @@ import glob
 from networkx.drawing import layout
 
 
-
 def add_channel_to_graph(channel, G):
     for item in channel:
         if item.get('reply_users'):
@@ -22,7 +21,7 @@ def add_channel_to_graph(channel, G):
                         G.add_edge(i,thread_owner, weight= 1)
 
 
-def metric_calc(Graph, metric_id):
+def metric_calc(Graph, metric_id, userlist_id_name_dict):
     result = {}
     if(metric_id == 0):
         degree = degree_centrality(Graph)
@@ -53,63 +52,71 @@ def layout_for_graph(Graph, layout_id):
         pos = nx.spiral_layout(Graph)
     return pos
 
+def run_graph(file_name):
+    """ return format: channel array with name, img """
+    return [
+        { "name": "graph", "img": "static/uploads/graph.png"},
+        { "name": "hey", "img": "static/uploads/hey.png"},
+        { "name": "general", "img": "static/uploads/general.png"},
+    ]
+    
+    G = nx.Graph()
+    S = nx.Graph()
+
+    userlist_f = open('users.json')
+    userlist_p = json.load(userlist_f)
+
+    channellist_f = open('channels.json')
+    channellist_p = json.load(channellist_f)
+
+    #channel listten kanalları çekip hepsinde çalışacak:
+
+    userlist_id_name_dict = {}
+    channel_names = []
+
+    for i in channellist_p:
+        name = i['name']
+        channel_names.append(name)
+
+    json_files = []
+    for i in channel_names:
+        x = glob.glob('/static/{file_s}/input/{channel}/*.json'.format(file_s = file_name, channel=i))
+        json_files.append(x[0])
+
+    for i in userlist_p:
+        i_id = i['id']
+        i_name = i['name']
+        userlist_id_name_dict[i_id] = i_name
+        G.add_node(i_id)
+        S.add_node(i_id)
+
+    subgraphs = []
+    for file in json_files:
+        messagelist_f = open(file)
+        messagelist_p = json.load(messagelist_f)
+        add_channel_to_graph(messagelist_p, G)
+        subgraph = S
+        add_channel_to_graph(messagelist_p,subgraph)
+        subgraphs.append(subgraph)
 
 
-G = nx.Graph()
-S = nx.Graph()
+    ##layout id -> layout_for_graph
+    ##metric id -> metric_calc
 
-userlist_f = open('users.json')
-userlist_p = json.load(userlist_f)
-
-channellist_f = open('channels.json')
-channellist_p = json.load(channellist_f)
-
-#channel listten kanalları çekip hepsinde çalışacak:
-
-userlist_id_name_dict = {}
-channel_names = []
-
-for i in channellist_p:
-    name = i['name']
-    channel_names.append(name)
+    pos = layout_for_graph(subgraphs[0],1)
 
 
-file_name= "???"
-json_files = []
-for i in channel_names:
-    x = glob.glob('/static/{file_s}/input/{channel}/*.json'.format(file_s = file_name, channel=i))
-    json_files.append(x[0])
-
-
-
-for i in userlist_p:
-    i_id = i['id']
-    i_name = i['name']
-    userlist_id_name_dict[i_id] = i_name
-    G.add_node(i_id)
-    S.add_node(i_id)
-
-
-subgraphs = []
-for file in json_files:
-    messagelist_f = open(file)
-    messagelist_p = json.load(messagelist_f)
-    add_channel_to_graph(messagelist_p, G)
-    subgraph = S
-    add_channel_to_graph(messagelist_p,subgraph)
-    subgraphs.append(subgraph)
-
-
-##layout id -> layout_for_graph
-##metric id -> metric_calc
-
-pos = layout_for_graph(subgraphs[0],1)
-
-
-nx.draw_networkx(G,pos,with_labels=False)
-nx.draw_networkx_labels(G,pos,userlist_id_name_dict)
-labels = nx.get_edge_attributes(G,'weight')
-nx.draw_networkx_edge_labels(G,pos,edge_labels=labels)
-  
-plt.savefig("Graph.png", format="PNG")
-plt.show()
+    nx.draw_networkx(G,pos,with_labels=False)
+    nx.draw_networkx_labels(G,pos,userlist_id_name_dict)
+    labels = nx.get_edge_attributes(G,'weight')
+    nx.draw_networkx_edge_labels(G,pos,edge_labels=labels)
+    
+    plt.savefig("Graph.png", format="PNG")
+    #plt.show()
+    
+    """ return format: channel array with name, img """
+    return [
+        { "name": "graph", "img": "static/uploads/graph.png"},
+        { "name": "hey", "img": "static/uploads/hey.png"},
+        { "name": "general", "img": "static/uploads/general.png"},
+    ]

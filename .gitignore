@@ -10,3 +10,6 @@ __pycache__
 
 venv/
 docs/build/
+
+static/uploads/*
+!static/uploads/.gitkeep

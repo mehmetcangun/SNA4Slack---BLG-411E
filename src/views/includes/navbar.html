@@ -1,11 +1,18 @@
 <nav class="navbar navbar-expand " style="background-color: #3B3636;">
   <div class="container" style="display: flex; justify-content: center; align-items: center;">
     <a class="navbar-brand" href="/">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111615.png" height=50 alt="">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111615.png" height="50" alt="">
     </a>
   </div>  
   <div class="container" style="display: flex; justify-content: center; align-items: center;">
-    <a class="nav-item" style="color: #FFFFFF; font-weight: 750; font-size: x-large; display: flex; justify-content: center; align-items: center; text-justify: center;"> Total User: 10040 </a>
+    <a class="nav-item" style="color: #FFFFFF; font-weight: 750; font-size: x-large; display: flex; justify-content: center; align-items: center; text-justify: center;"> 
+      Total User: 
+      {% if session.total_user %}
+        {{ session.total_user }}
+      {% else %}
+        0
+      {% endif %} 
+    </a>
   </div> 
   <div class="container" style="display: flex; justify-content: center; align-items: center;">
     <a class="nav-item nav-link" href="/" style="color: #FFFFFF; font-weight: 750; font-size: x-large;">Anasayfa </a>

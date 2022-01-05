@@ -1,0 +1,21 @@
+{% extends "layout.html" %} 
+{% block title %} Graph {% endblock %} 
+
+{% block content %}
+
+<h1 class="display-4">SNA Analysis</h1>
+<h1 class="display-5">Node: User | Edge: Reply</h1>
+<div class="container">
+{%for channel in channels %}
+    <div class="card my-3">
+        <div class="card-header bg-dark">
+            <h1 class="display-5 card-title">{{ channel.name }}</h1>
+        </div>
+        <div class="card-body">
+            <img src="{{ channel.img }}" class="rounded mx-auto d-block"  alt="{{ channel.name }}">
+        </div>
+    </div>
+{%endfor%}
+</div>
+
+{% endblock %}

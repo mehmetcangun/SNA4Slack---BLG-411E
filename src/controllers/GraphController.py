@@ -4,6 +4,7 @@ import networkx as nx
 from networkx.algorithms.bridges import bridges
 from networkx.algorithms.centrality.degree_alg import degree_centrality
 from networkx.algorithms.approximation import all_pairs_node_connectivity
+from networkx.algorithms.link_analysis.pagerank_alg import pagerank
 import glob
 from networkx.classes.function import subgraph
 from networkx.drawing import layout
@@ -42,7 +43,9 @@ def metric_calc(Graph, metric_id, userlist_id_name_dict):
             edge = (userlist_id_name_dict[node[0]],userlist_id_name_dict[node[1]])
             result.append(edge)
     elif(metric_id == 2):
-        result = all_pairs_node_connectivity(Graph)
+        result = pagerank(Graph) #all_pairs_node_connectivity(Graph)
+        for i in result:
+            print(userlist_id_name_dict[i], " ", str(result[i]))
     return result
 
 
@@ -89,7 +92,6 @@ def run_graph(metric_id, layout_id, foldername):
         graph_name = channel_names[index] + ".png"
         path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output", graph_name)
         plt.savefig(path, format="PNG")
-        plt.show()
         subgraphs_drawed.append({"name": channel_names[index], "img": path})
         plt.clf()
 

@@ -56,11 +56,17 @@ def preference_page():
     return render_template("preference.html", colors=colors, layout_data=[layout_labels, layouts_rate, layout_ids], metric_data=[metric_labels, metrics_rate, metric_ids])
 
 def calculate_SNA():
-    return True
+    fname = session.get("current_foldername")
+    metric_id = session.get("metric")
+    layout_id = session.get("layout")
+    data = run_graph(metric_id = metric_id, layout_id = layout_id, foldername=fname)
+    if data:
+        session["graph_data"] = data
+        return True
+    return False
 
 def evaluate_metric_layout():
     #extract_file('asd123')
-    print("im hereeeee")
     if request.method == "POST":
         step = int(request.form["step"])
         print(step)
@@ -70,19 +76,17 @@ def evaluate_metric_layout():
         if step == 2:
             res = calculate_SNA()
             return jsonify({'data': res})
-    metric = request.form['metric']
-    layout = request.form['layout']
-    print(metric)
-    print(layout)
     return redirect('/')
 
-def progress_bar_page(num=0):
-    return render_template("progress_bar.html", num=num)
-
+def progress_bar_page():
+    metric = request.form['metric']
+    layout = request.form['layout']
+    session["metric"] = int(metric)
+    session["layout"] = int(layout)
+    return render_template("progress_bar.html")
 
 def graph_page():
-    fname = session.get("current_foldername")
-    data = run_graph(metric_id = 1, layout_id = 1, foldername=fname)
+    data = session.get("graph_data")
     return render_template("graph.html", channels=data)
 
 

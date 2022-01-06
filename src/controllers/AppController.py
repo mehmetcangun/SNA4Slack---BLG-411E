@@ -81,8 +81,8 @@ def progress_bar_page(num=0):
 
 
 def graph_page():
-    fname = session.get("file_name")
-    data = run_graph(fname)
+    fname = session.get("current_foldername")
+    data = run_graph(metric_id = 1, layout_id = 1, foldername=fname)
     return render_template("graph.html", channels=data)
 
 

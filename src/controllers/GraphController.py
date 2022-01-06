@@ -12,8 +12,6 @@ from flask import current_app as app
 from numpy.lib.function_base import extract
 
 
-userlist_id_name_dict = {}
-channel_names = []
 
 def add_channel_to_graph(channel, G):
     for item in channel:
@@ -61,7 +59,7 @@ def layout_for_graph(Graph, layout_id):
 
 
 
-def draw_graph(graph, layout_id):
+def draw_graph(graph, layout_id, userlist_id_name_dict):
     pos = layout_for_graph(graph,layout_id)
     nx.draw_networkx(graph,pos,with_labels=False)
     nx.draw_networkx_labels(graph,pos,userlist_id_name_dict)
@@ -69,31 +67,39 @@ def draw_graph(graph, layout_id):
     nx.draw_networkx_edge_labels(graph,pos,edge_labels=labels)
 
 def run_graph(metric_id, layout_id, foldername):
-    G,subgraphs = read_all(foldername)
-    General_graph = draw_graph(G, layout_id)
-    general_metric = metric_calc(G, metric_id)
-    subgraphs_drawed = []
-    for index, graph in enumerate(subgraphs):
-        draw_graph(graph, layout_id)
-        graph_name = channel_names[index] + ".png"
-        path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, graph_name) # folderın içine mi çıkacak?
-        plt.savefig(path, format="PNG")
-        
-    """ return format: channel array with name, img """
-    return [
-        { "name": "graph", "img": "static/uploads/graph.png"},
-        { "name": "hey", "img": "static/uploads/hey.png"},
-        { "name": "general", "img": "static/uploads/general.png"},
-    ]
+    userlist_id_name_dict = {}
+    channel_names = []
 
-def read_all(foldername):
+    G,subgraphs = read_all(foldername, channel_names, userlist_id_name_dict)
+    draw_graph(G, layout_id, userlist_id_name_dict)
+    graph_name = "[CREATED BY THE SYSTEM] Total Result for all channels"
+    path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output", graph_name+".png")
+    plt.savefig(path, format="PNG")
+    
+    general_metric = metric_calc(G, metric_id, userlist_id_name_dict)
+    print(general_metric)
+
+    subgraphs_drawed = []
+    subgraphs_drawed.append({"name": graph_name, "img": path})
+
+    for index, graph in enumerate(subgraphs):
+        draw_graph(graph, layout_id, userlist_id_name_dict)
+        graph_name = channel_names[index] + ".png"
+        path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output", graph_name)
+        plt.savefig(path, format="PNG")
+        subgraphs_drawed.append({"name": channel_names[index], "img": path})
+    
+    return subgraphs_drawed
+
+def read_all(foldername, channel_names, userlist_id_name_dict):
     G = nx.Graph()
     S = nx.Graph()
 
-    userlist_f = open('users.json')
+    print(foldername)
+    userlist_f = open(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "extract", 'users.json'))
     userlist_p = json.load(userlist_f)
 
-    channellist_f = open('channels.json')
+    channellist_f = open(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "extract", 'channels.json'))
     channellist_p = json.load(channellist_f)
 
     #channel listten kanalları çekip hepsinde çalışacak:
@@ -106,7 +112,7 @@ def read_all(foldername):
     extract_path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "extract")
     json_files = []
     for i in channel_names:
-        x = glob.glob('{path}/{0}/*.json'.format(extract_path, i))
+        x = glob.glob('{path}/{channel}/*.json'.format(path=extract_path, channel=i))
         json_files.append(x)
 
 

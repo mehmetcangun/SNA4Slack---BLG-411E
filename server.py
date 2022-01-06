@@ -8,7 +8,7 @@ app.config.from_object('config')
 
 app.add_url_rule("/", view_func=AppController.upload_page, methods=['GET', 'POST'])
 app.add_url_rule("/preference", view_func=AppController.preference_page, methods=['GET', 'POST'])
-app.add_url_rule("/evaluate_metric_layout/<int:step>", view_func=AppController.evaluate_metric_layout, methods=['GET', 'POST'])
+app.add_url_rule("/evaluate_metric_layout", view_func=AppController.evaluate_metric_layout, methods=['GET', 'POST'])
 app.add_url_rule("/progress_bar", view_func=AppController.progress_bar_page, methods=['GET', 'POST'])
 app.add_url_rule("/graph", view_func=AppController.graph_page, methods=['GET', 'POST'])
 

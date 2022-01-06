@@ -3,45 +3,85 @@
 <!-- num will  be connect to API -->
 
 {% block content %}
-  {% if num >= 0.6 %}
-  <img src="https://raw.githubusercontent.com/dedjou/images/main/images/3_titled.png" height=600 alt="">
-  {% elif num >= 0.4 %}
-  <img src="https://raw.githubusercontent.com/dedjou/images/main/images/2_titled.png" height=600 alt="">
-  {% elif num >= 0.2 %}
-  <img src="https://raw.githubusercontent.com/dedjou/images/main/images/1_titled.png" height=600 alt="">
-  {% else %}
-  <img src="https://raw.githubusercontent.com/dedjou/images/main/images/0_titled.png" height=600 alt="">
-  {% endif %}
+<div class="container">
+  <div class="my-3 p-3">
+    <h1 class="display-3">Step 1</h1>
+    <h2 id="step-1-title" class="display-4 mt-2">
+      Extracting Data
+    </h2>
+    <div class="progress">
+      <div id="step-1-progress" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+    </div>
+  </div>
+  <div class="my-3 p-3">
+    <h1 class="display-3">Step 2</h1>
+    <h2 id="step-2-title" class="display-4 mt-2">
+      Calculating SNA
+    </h2>
+    <div class="progress">
+      <div id="step-2-progress" class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+    </div>
+  </div>
+  <div class="toast" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="mr-auto">Error!</strong>
+    </div>
+    <div id="toast-body" class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
+</div>
+
 <script>
   $( document ).ready(function() {
-    $.post( "/evaluate_metric_layout", { step: 1 }, (res) => {
+    $('.toast').toast('hide')
+
+    $.post( "/evaluate_metric_layout", { step: 1 }, async(res) => {
       if(res.data === true){
-        // ilk topu yeşil yap.
-        // next step.
-        $.post( "/evaluate_metric_layout", { step: 2 }, (res) => {
+        
+        await setTimeout(() => {
+          $("#step-1-progress").removeClass("bg-primary")
+          $("#step-1-progress").addClass("bg-success")
+          $("#step-1-title").text("Extracted Data")
+          $("#step-2-progress").removeClass("bg-warning")
+          $("#step-2-progress").addClass("bg-primary")
+        }, timeout = 2000)
+        
+        $.post( "/evaluate_metric_layout", { step: 2 }, async(res) => {
           if(res.data === true){
-            // 2.topu yeşil yap.
-            // wait 5 seconds
-            // redirect to the graph page.
-            setTimeout(() => {
+
+            await setTimeout(() => {
+              $("#step-2-progress").removeClass("bg-primary")
+              $("#step-2-progress").addClass("bg-success")
+              $("#step-2-title").text("Calculated SNA")
               window.location.href = "/graph"
-            }, 5000)
+            }, timeout = 5000)
+
           } else {
-            // ilk top yeşil kalsın, 2.top kırmızı
-            // hata oluştursa ekrana message bas ve anaysafaya dön.
-            alert("Error occured in Calculating SNA, returning the home page")
+            
+            
+
             setTimeout(() => {
+              $("#step-2-progress").removeClass("bg-primary")
+              $("#step-2-progress").addClass("bg-danger")
+              
+          
+              $('.toast').toast('show')
+              $("#toast-body").text("An error occured while calculating SNA.")
               window.location.href = "/"
-            }, 3000)
+            }, 5000)
           }
         })
       } else {
-        // ilk topu kırmızı tut.
-        // hata oluştursa ekrana message bas ve anaysafaya dön.
-        alert("Error occured in Extracting Data, returning the home page")
-        setTimeout(() => {
+
+        await setTimeout(() => {
+          $("#step-1-progress").removeClass("bg-primary")
+          $("#step-1-progress").addClass("bg-danger")
+          
+          $('.toast').toast('show')
+          $("#toast-body").text("An error occured while extracting data.")
           window.location.href = "/"
-        }, 3000)
+        }, 5000)
       }
     });
   });

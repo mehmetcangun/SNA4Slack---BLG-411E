@@ -10,6 +10,7 @@ from networkx.drawing import layout
 import os
 from flask import current_app as app
 from numpy.lib.function_base import extract
+import copy
 
 
 
@@ -75,7 +76,8 @@ def run_graph(metric_id, layout_id, foldername):
     graph_name = "[CREATED BY THE SYSTEM] Total Result for all channels"
     path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output", graph_name+".png")
     plt.savefig(path, format="PNG")
-    
+    plt.clf()
+
     general_metric = metric_calc(G, metric_id, userlist_id_name_dict)
     print(general_metric)
 
@@ -87,8 +89,10 @@ def run_graph(metric_id, layout_id, foldername):
         graph_name = channel_names[index] + ".png"
         path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output", graph_name)
         plt.savefig(path, format="PNG")
+        plt.show()
         subgraphs_drawed.append({"name": channel_names[index], "img": path})
-    
+        plt.clf()
+
     return subgraphs_drawed
 
 def read_all(foldername, channel_names, userlist_id_name_dict):
@@ -126,7 +130,7 @@ def read_all(foldername, channel_names, userlist_id_name_dict):
 
     subgraphs = []
     for files in json_files:
-        subgraph = S
+        subgraph = copy.deepcopy(S)
         for file in files:
             messagelist_f = open(file)
             messagelist_p = json.load(messagelist_f)

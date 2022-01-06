@@ -1,5 +1,5 @@
 import os
-from flask import flash, request, redirect, render_template, session
+from flask import flash, request, redirect, render_template, session, jsonify
 from werkzeug.utils import secure_filename
 
 from .GraphController import run_graph
@@ -9,6 +9,7 @@ from .SNAController import get_rate
 from .FileController import extract_file
 import random
 from flask import current_app as app
+import uuid
 
 ALLOWED_EXTENSIONS = {'zip'}
 
@@ -34,24 +35,36 @@ def upload_page():
             flash('No selected file')
             return redirect(request.url)
         if file:
-            filename = secure_filename(file.filename)
-            print(filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-            print(request.files['file'])
-            return redirect("/progress_bar")
+            guid = uuid.uuid4().hex
+            foldername = secure_filename(guid)
+            os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], foldername))
+            os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output"))
+            os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "extract"))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "file.zip"))
+            session["current_foldername"] = foldername
+            return redirect("/preference")
     
     return render_template("upload.html")
 
 
 def preference_page():
-    #extract_file('asd123')
-    metric_labels, metrics_rate = get_rate("metric")
-    layout_labels, layouts_rate = get_rate("layout")
+    metric_labels, metrics_rate, metric_ids = get_rate("metric")
+    layout_labels, layouts_rate, layout_ids= get_rate("layout")
     colors = ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
              for i in range(max(len(metric_labels), len(layout_labels)))]
-    return render_template("preference.html", colors=colors, layout_data=[layout_labels, layouts_rate], metric_data=[metric_labels, metrics_rate])
+    return render_template("preference.html", colors=colors, layout_data=[layout_labels, layouts_rate, layout_ids], metric_data=[metric_labels, metrics_rate, metric_ids])
 
-def evaluate_metric_layout():
+def calculate_SNA():
+    return "sa"
+
+def evaluate_metric_layout(step):
+    #extract_file('asd123')
+    if step == 1:
+        res = extract_file()
+        return jsonify({'data': res})
+    if step == 2:
+        res = calculate_SNA()
+        return jsonify({'data': res})
     metric = request.form['metric']
     layout = request.form['layout']
     print(metric)

@@ -14,4 +14,4 @@ METRIC = {
     2: "All Pairs Node Connectivity"
 }
 
-UPLOAD_FOLDER="static/uploads"
+UPLOAD_FOLDER="static\\uploads"

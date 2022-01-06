@@ -1,17 +1,17 @@
 from ..models.FileInfo import FileInfoQuery
-from flask import current_app as app
+from flask import current_app as app, session
 from zipfile import ZipFile
 import os
 
 def save_fileinfo(user_id, file_size, is_proper):
     return FileInfoQuery(user_id=user_id, file_size=file_size, is_proper=is_proper)
 
-def extract_file(file_id):
+def extract_file():
 
-    file_name = file_id + ".zip"
+    folder_name = session.get("current_foldername")
 
-    file_path = os.path.join("static\\uploads", file_id, "input", file_name)
-    extract_path = os.path.join("static\\uploads", file_id, "extract")
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], folder_name, "file.zip")
+    extract_path = os.path.join(app.config['UPLOAD_FOLDER'], folder_name, "extract")
     
     with ZipFile(file_path , 'r') as zip:
         # printing all the contents of the zip file
@@ -24,7 +24,7 @@ def extract_file(file_id):
 
             # extracting all the files
             print('Extracting all the files now...')
-            #zip.extractall(extract_path)
+            zip.extractall(extract_path)
             print('Done!')
             return True
         else:

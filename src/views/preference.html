@@ -14,8 +14,8 @@
             class="form-check-input"
             type="radio"
             name="metric"
-            id="{{ item }}"
-            value="{{ item }}"
+            id="{{ metric_data[2][loop.index-1] }}"
+            value="{{ metric_data[2][loop.index-1] }}"
             {{ "checked" if loop.index == 1 else "" }}
           />
           <label class="form-check-label" for="{{ item }}"> {{ item }} </label>
@@ -29,8 +29,8 @@
             class="form-check-input"
             type="radio"
             name="layout"
-            id="{{ item }}"
-            value="{{ item }}"
+            id="{{ layout_data[2][loop.index-1] }}"
+            value="{{ layout_data[2][loop.index-1] }}"
             {{ "checked" if loop.index == 1 else "" }}
           />
           <label class="form-check-label" for="{{ item }}"> {{ item }} </label>

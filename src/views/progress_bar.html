@@ -12,4 +12,10 @@
   {% else %}
   <img src="https://raw.githubusercontent.com/dedjou/images/main/images/0_titled.png" height=600 alt="">
   {% endif %}
+<script>
+  $( document ).ready(function() {
+    sa = $.post( "/evaluate_metric_layout", { step: 1 })
+    console.log(sa)
+  });
+</script>
 {% endblock content %}

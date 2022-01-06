@@ -52,7 +52,7 @@ def layout_for_graph(Graph, layout_id):
         pos = nx.spiral_layout(Graph)
     return pos
 
-def run_graph(file_name):
+def run_graph(metric_id, layout_id, foldername):
     """ return format: channel array with name, img """
     return [
         { "name": "graph", "img": "static/uploads/graph.png"},

@@ -14,8 +14,36 @@
   {% endif %}
 <script>
   $( document ).ready(function() {
-    sa = $.post( "/evaluate_metric_layout", { step: 1 })
-    console.log(sa)
+    $.post( "/evaluate_metric_layout", { step: 1 }, (res) => {
+      if(res.data === true){
+        // ilk topu yeşil yap.
+        // next step.
+        $.post( "/evaluate_metric_layout", { step: 2 }, (res) => {
+          if(res.data === true){
+            // 2.topu yeşil yap.
+            // wait 5 seconds
+            // redirect to the graph page.
+            setTimeout(() => {
+              window.location.href = "/graph"
+            }, 5000)
+          } else {
+            // ilk top yeşil kalsın, 2.top kırmızı
+            // hata oluştursa ekrana message bas ve anaysafaya dön.
+            alert("Error occured in Calculating SNA, returning the home page")
+            setTimeout(() => {
+              window.location.href = "/"
+            }, 3000)
+          }
+        })
+      } else {
+        // ilk topu kırmızı tut.
+        // hata oluştursa ekrana message bas ve anaysafaya dön.
+        alert("Error occured in Extracting Data, returning the home page")
+        setTimeout(() => {
+          window.location.href = "/"
+        }, 3000)
+      }
+    });
   });
 </script>
 {% endblock content %}

@@ -42,6 +42,7 @@ def upload_page():
             os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "extract"))
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "file.zip"))
             session["current_foldername"] = foldername
+
             return redirect("/preference")
     
     return render_template("upload.html")
@@ -55,16 +56,20 @@ def preference_page():
     return render_template("preference.html", colors=colors, layout_data=[layout_labels, layouts_rate, layout_ids], metric_data=[metric_labels, metrics_rate, metric_ids])
 
 def calculate_SNA():
-    return "sa"
+    return True
 
-def evaluate_metric_layout(step):
+def evaluate_metric_layout():
     #extract_file('asd123')
-    if step == 1:
-        res = extract_file()
-        return jsonify({'data': res})
-    if step == 2:
-        res = calculate_SNA()
-        return jsonify({'data': res})
+    print("im hereeeee")
+    if request.method == "POST":
+        step = int(request.form["step"])
+        print(step)
+        if step == 1:
+            res = extract_file()
+            return jsonify({'data': res})
+        if step == 2:
+            res = calculate_SNA()
+            return jsonify({'data': res})
     metric = request.form['metric']
     layout = request.form['layout']
     print(metric)

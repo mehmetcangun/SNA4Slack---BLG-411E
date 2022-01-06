@@ -28,3 +28,7 @@ body {
   width: 60% !important;
   background-color: black;
 }
+
+.flashes {
+  color: red;
+}

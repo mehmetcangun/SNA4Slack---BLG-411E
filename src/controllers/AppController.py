@@ -32,6 +32,7 @@ def upload_page():
         
         if not file.filename.endswith("zip"):
             flash('This file extension is not allowed')
+            print("Error 1")
             return redirect(request.url)
         
         # If the user does not select a file, the browser submits an

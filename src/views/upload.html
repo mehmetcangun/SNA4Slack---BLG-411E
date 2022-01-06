@@ -5,6 +5,15 @@
 {% block content %}
   <h2 class="display-4 is-dark" style="text-align: center;" >Upload a Slack Zip File</h2>
   <nav style="text-align: center;">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flashes">
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
     <form method="post" enctype="multipart/form-data">
       <input type="file" name="file" accept=".zip" class="btn btn-primary p-5 mx-5 my-2" width="300" height="500" style="background: url('https://image.shutterstock.com/image-vector/mouse-cursor-clicks-upload-button-600w-162757685.jpg') no-repeat fixed center;">
       <hr/>

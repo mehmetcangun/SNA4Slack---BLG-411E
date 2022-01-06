@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from src.routes import *
 from src.controllers import AppController
 
@@ -11,6 +11,11 @@ app.add_url_rule("/preference", view_func=AppController.preference_page, methods
 app.add_url_rule("/evaluate_metric_layout", view_func=AppController.evaluate_metric_layout, methods=['GET', 'POST'])
 app.add_url_rule("/progress_bar", view_func=AppController.progress_bar_page, methods=['GET', 'POST'])
 app.add_url_rule("/graph", view_func=AppController.graph_page, methods=['GET', 'POST'])
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
 if __name__ == "__main__":
     from src.models.DB import db, migrate

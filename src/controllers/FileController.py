@@ -2,9 +2,15 @@ from ..models.FileInfo import FileInfoQuery
 from flask import current_app as app, session
 from zipfile import ZipFile
 import os
+import json
 
-def save_fileinfo(user_id, file_size, is_proper):
-    return FileInfoQuery(user_id=user_id, file_size=file_size, is_proper=is_proper)
+def save_fileinfo(user_id, file_size, channel_length, user_length):
+    return FileInfoQuery(user_id=user_id, file_size=file_size, channel_length=channel_length, user_length=user_length)
+
+def get_length(foldername, type):
+    list_f = open(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "extract", type))
+    list_p = json.load(list_f)
+    return len(list_p)
 
 def extract_file():
 

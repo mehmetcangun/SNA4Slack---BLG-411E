@@ -1,27 +1,27 @@
 import os
+import random
+import uuid
+
 from flask import flash, request, redirect, render_template, session, jsonify
 from werkzeug.utils import secure_filename
 
 from .GraphController import run_graph
-
 from .UserController import save_user, get_user_count, get_user_count_having_files
-from .SNAController import get_rate
-from .FileController import extract_file
-import random
+from .SNAController import get_rate, save_sna
+from .FileController import extract_file, get_length, save_fileinfo
+
 from flask import current_app as app
-import uuid
 
 ALLOWED_EXTENSIONS = {'zip'}
 
 def upload_page():
+    session["total_user"] = get_user_count()
+    
     if request.method == "GET":
         if not session.get("current_client_id"):
             ip_address = request.remote_addr
             device_type = request.headers.get("user-agent")
             save_user(ip_address, device_type)
-        
-        if not session.get("total_user"):
-            session["total_user"] = get_user_count()
     
     if request.method == 'POST':
         # check if the post request has the file part
@@ -33,6 +33,7 @@ def upload_page():
         if not file.filename.endswith("zip"):
             flash('This file extension is not allowed')
             return redirect(request.url)
+        
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
         if file.filename == '':
@@ -45,6 +46,8 @@ def upload_page():
             os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output"))
             os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "extract"))
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "file.zip"))
+            
+            session["current_file_size"] = file.content_length
             session["current_foldername"] = foldername
 
             return redirect("/preference")
@@ -59,10 +62,13 @@ def preference_page():
              for i in range(max(len(metric_labels), len(layout_labels)))]
     return render_template("preference.html", colors=colors, layout_data=[layout_labels, layouts_rate, layout_ids], metric_data=[metric_labels, metrics_rate, metric_ids])
 
-def calculate_SNA():
+def calculate_SNA(file_id):
     fname = session.get("current_foldername")
     metric_id = session.get("metric")
     layout_id = session.get("layout")
+    """
+    sna_id = save_sna(layout_id, metric_id, file_id)
+    """
     data = run_graph(metric_id = metric_id, layout_id = layout_id, foldername=fname)
     if data:
         session["graph_data"] = data
@@ -70,16 +76,26 @@ def calculate_SNA():
     return False
 
 def evaluate_metric_layout():
-    #extract_file('asd123')
+    
     if request.method == "POST":
         step = int(request.form["step"])
-        print(step)
+        foldername = session["current_foldername"]
+        file_id = None
         if step == 1:
             res = extract_file()
+            """
+            user_length = get_length(foldername, "users.json")
+            channels_length = get_length(foldername, "channels.json")
+
+            file_id = save_fileinfo(session["current_client_id"], session["current_file_size"], channels_length, user_length)
+            """
+
             return jsonify({'data': res})
+        
         if step == 2:
-            res = calculate_SNA()
+            res = calculate_SNA(file_id)
             return jsonify({'data': res})
+        
     return redirect('/')
 
 def progress_bar_page():

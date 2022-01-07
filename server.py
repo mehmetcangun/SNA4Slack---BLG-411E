@@ -1,4 +1,11 @@
+import os
+import time
+import shutil
+from pytz import utc
+
 from flask import Flask, render_template
+from flask_apscheduler import APScheduler
+
 from src.routes import *
 from src.controllers import AppController
 
@@ -18,8 +25,42 @@ def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 
+
+def trigger_delete_file():
+    to_be_deleted = list()    
+    for i in os.listdir(app.config['UPLOAD_FOLDER']):
+        check_path = os.path.join(app.config['UPLOAD_FOLDER'], i)
+        if os.path.isdir(check_path):
+            elapsed_time = time.gmtime(time.time() - os.path.getmtime(check_path))
+            """TEST"""
+            if elapsed_time.tm_min >= 2:
+                to_be_deleted.append(check_path)
+            
+            """
+            if elapsed_time.tm_hour >= 24:
+                to_be_deleted.append(check_path)
+            """
+        
+    for i in to_be_deleted:
+        shutil.rmtree(i)
+
+
 if __name__ == "__main__":
     from src.models.DB import db, migrate
     db.init_app(app)
     migrate.init_app(app, db)
-    app.run(debug=True)
+    scheduler = APScheduler()
+    scheduler.init_app(app)
+    scheduler.start()
+    app.apscheduler.add_job(
+        timezone=utc, 
+        func=trigger_delete_file, 
+        trigger='interval', 
+        minutes=app.config["WAIT_IN_MINUTES"], 
+        hours=app.config["WAIT_IN_HOURS"], 
+        days=app.config["WAIT_IN_DAYS"],
+        id="delete_task")
+
+    app.run()
+
+ 

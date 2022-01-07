@@ -23,9 +23,11 @@ app.add_url_rule("/update_user_count", view_func=AppController.update_user_count
 
 @app.errorhandler(404)
 def page_not_found(e):
-    # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 
+@app.errorhandler(403)
+def page_no_authorization(e):
+  return render_template('403.html'), 403
 
 def trigger_delete_file():
     to_be_deleted = list()    

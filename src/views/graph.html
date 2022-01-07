@@ -3,29 +3,32 @@
 
 {% block content %}
 
-<h1 class="display-4">SNA Analysis</h1>
-<h1 class="display-5">Node: User | Edge: Reply</h1>
+<div class="container">
+    <h1 class="display-4 text-center">SNA Analysis</h1>
+    <h3 class="font-sm text-left">Node: User | Edge: Reply</h3>
+    <a href="/preference">Select New Metric</a>
+</div>
 
 <div class="container">
 {%for channel in channels %}
-    <div class="card my-3 bg-dark">
+    <div class="card my-3">
         <div class="card-header bg-dark">
             <h1 class="display-5 card-title">{{ channel.name }}</h1>
         </div>
         <div class="card-body">
             <img src="{{ channel.img }}" class="rounded mx-auto d-block"  alt="{{ channel.name }}">
         </div>
-        <table id="dt-table" class="display">
+        <table id="dt-table" class="display table table-dark">
             <thead>
                 {% if channel.metric_id == 0 or channel.metric_id == 2 %}
                     <tr>
-                        <th>User</th>
-                        <th>Value</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Value</th>
                     </tr>
                 {% else %}
                     <tr>
-                        <th>User1</th>
-                        <th>User2</th>
+                        <th scope="col">User1</th>
+                        <th scope="col">User2</th>
                     </tr>
                 {% endif %}
             </thead>
@@ -72,7 +75,7 @@
 
 <script>
     $(document).ready(function(){
-        $('#dt-table').DataTable();
+        $('.display').DataTable();
     });
 </script>
 

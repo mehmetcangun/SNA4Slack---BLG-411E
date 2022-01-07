@@ -12,7 +12,7 @@ class User(db.Model):
     ip_address = db.Column(db.String(20), nullable=False)
     device_type = db.Column(db.String(255), nullable=False)
     
-    files = db.relationship('FileInfo', backref='user', lazy=True)
+    files = db.relationship('FileInfo', backref='user', lazy=True, cascade="all,delete")
 
 class UserQuery():
     user = None
@@ -34,6 +34,6 @@ class UserQuery():
     
     @staticmethod
     def find_user_count_having_files() -> int:
-        return db.session.query(fileinfo).join(User).count()
+        return db.session.query(User).join(FileInfo.FileInfo).distinct().count()
 
     

@@ -1,5 +1,4 @@
 import datetime
-from os import stat
 import src.models.DB as DB
 import src.models.FileInfo
 
@@ -10,8 +9,8 @@ class SNAPreferences(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     metric_id = db.Column(db.Integer, nullable=False)
     layout_id = db.Column(db.Integer, nullable=False)
-    processed_date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now())
 
+    processed_date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now())
     file_id = db.Column(db.Integer, db.ForeignKey('fileinfo.id'), nullable=False)
 
 class SNAPreferencesQuery():
@@ -23,6 +22,7 @@ class SNAPreferencesQuery():
     def save_sna(self) -> int:
         db.session.add(self.sna)
         db.session.commit()
+        return self.sna.id
         
 
     @staticmethod

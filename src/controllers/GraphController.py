@@ -1,19 +1,15 @@
 import json
+import glob
+import os
+import copy
+
 import matplotlib.pyplot as plt
 import networkx as nx
 from networkx.algorithms.bridges import bridges
 from networkx.algorithms.centrality.degree_alg import degree_centrality
-from networkx.algorithms.approximation import all_pairs_node_connectivity
 from networkx.algorithms.link_analysis.pagerank_alg import pagerank
-import glob
-from networkx.classes.function import subgraph
-from networkx.drawing import layout
-import os
+
 from flask import current_app as app
-from numpy.lib.function_base import extract
-import copy
-
-
 
 def add_channel_to_graph(channel, G):
     for item in channel:
@@ -23,7 +19,7 @@ def add_channel_to_graph(channel, G):
                 if thread_owner != i:
                     if G.has_edge(i,thread_owner):
                         G[i][thread_owner]['weight'] += 1
-                        print(G[i][thread_owner]['weight'])
+                        #print(G[i][thread_owner]['weight'])
                     else:
                         G.add_edge(i,thread_owner, weight= 1)
 
@@ -43,16 +39,17 @@ def metric_calc(Graph, metric_id, userlist_id_name_dict):
             edge = (userlist_id_name_dict[node[0]],userlist_id_name_dict[node[1]])
             result.append(edge)
     elif(metric_id == 2):
-        result = pagerank(Graph) #all_pairs_node_connectivity(Graph)
+        result = pagerank(Graph)
+        new_res = dict()
         for i in result:
-            print(userlist_id_name_dict[i], " ", str(result[i]))
+            new_res[ userlist_id_name_dict[i] ] = result[i]
+        result = new_res.copy()
     return result
 
 
 def layout_for_graph(Graph, layout_id):
     if(layout_id == 0):
-        top = nx.bipartite.sets(Graph)[0]
-        pos = nx.bipartite_layout(Graph, top)
+        pos = nx.random_layout(Graph)
     elif(layout_id == 1):
         pos = nx.circular_layout(Graph)
     elif(layout_id == 2):
@@ -82,17 +79,29 @@ def run_graph(metric_id, layout_id, foldername):
     plt.clf()
 
     general_metric = metric_calc(G, metric_id, userlist_id_name_dict)
-    print(general_metric)
 
     subgraphs_drawed = []
-    subgraphs_drawed.append({"name": graph_name, "img": path})
+    subgraphs_drawed.append({
+        "name": graph_name, 
+        "img": path, 
+        "metric_rate": general_metric,
+        "metric_id": metric_id
+    })
 
     for index, graph in enumerate(subgraphs):
         draw_graph(graph, layout_id, userlist_id_name_dict)
         graph_name = channel_names[index] + ".png"
         path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output", graph_name)
         plt.savefig(path, format="PNG")
-        subgraphs_drawed.append({"name": channel_names[index], "img": path})
+        
+        channel_metric = metric_calc(graph, metric_id, userlist_id_name_dict) # check?
+
+        subgraphs_drawed.append({
+            "name": channel_names[index], 
+            "img": path, 
+            "metric_rate": channel_metric,
+            "metric_id": metric_id
+        })
         plt.clf()
 
     return subgraphs_drawed
@@ -140,5 +149,3 @@ def read_all(foldername, channel_names, userlist_id_name_dict):
             add_channel_to_graph(messagelist_p,subgraph)
         subgraphs.append(subgraph)
     return G,subgraphs
-
-#plt.show()

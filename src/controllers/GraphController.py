@@ -19,7 +19,7 @@ def add_channel_to_graph(channel, G):
                 if thread_owner != i:
                     if G.has_edge(i,thread_owner):
                         G[i][thread_owner]['weight'] += 1
-                        print(G[i][thread_owner]['weight'])
+                        #print(G[i][thread_owner]['weight'])
                     else:
                         G.add_edge(i,thread_owner, weight= 1)
 
@@ -42,7 +42,7 @@ def metric_calc(Graph, metric_id, userlist_id_name_dict):
         result = pagerank(Graph)
         new_res = dict()
         for i in result:
-            new_res[ userlist_id_name_dict[i] ] = int(result[i])
+            new_res[ userlist_id_name_dict[i] ] = result[i]
         result = new_res.copy()
     return result
 
@@ -149,5 +149,3 @@ def read_all(foldername, channel_names, userlist_id_name_dict):
             add_channel_to_graph(messagelist_p,subgraph)
         subgraphs.append(subgraph)
     return G,subgraphs
-
-#plt.show()

@@ -1,0 +1,89 @@
+{% extends "layout.html" %} 
+{% block title %} Statistics {% endblock %} 
+
+{% block content %}
+
+<div class="container text-center">
+    <h1 class="display-3">Statistics</h1>
+    <div>Total User: {{ data.total_user }}</div>
+    <div>user_having_files: {{ data.user_having_files }}</div>
+    <div>avg_channel_length_in_files: {{ data.avg_channel_length_in_files }}</div>
+    <div>avg_user_length_in_files: {{ data.avg_user_length_in_files }}</div>
+    
+    <div class="charts">
+        <canvas id="metricChart" width="600" height="400"></canvas>
+        <canvas id="layoutChart" width="600" height="400"></canvas>
+    </div>
+</div>
+<script src="static/prefChart.js"></script>
+<script>
+  const COLORS = [
+    '#4dc9f6',
+    '#f67019',
+    '#f53794',
+    '#537bc4',
+    '#acc236',
+    '#166a8f',
+    '#00a950',
+    '#58595b',
+    '#8549ba'
+  ];
+
+  Chart.defaults.global.responsive = false;
+  // define the chart data
+  var metricData = {
+    labels: {{ metric_data[0] | safe }},
+    datasets: [
+      {
+        label: "Metric Dataset",
+        data: {{ metric_data[1] | safe }},
+        backgroundColor: COLORS,
+        hoverOffset: 4,
+      },
+    ],
+  };
+  // get chart canvas
+  var ctx = document.getElementById("metricChart").getContext("2d");
+  // create the chart using the chart canvas
+  var metricChart = new Chart(ctx, {
+    type: "doughnut",
+    data: metricData,
+    options: { 
+      legend: {
+          labels: {
+              fontColor: "white",
+              fontSize: 16
+          }
+      },
+    }
+  });
+
+  var layoutData = {
+    labels: {{ layout_data[0] | safe }},
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: {{ layout_data[1] | safe }},
+        backgroundColor: COLORS.reverse(),
+        hoverOffset: 4,
+      },
+    ],
+  };
+  // get chart canvas
+  var ctx = document.getElementById("layoutChart").getContext("2d");
+  // create the chart using the chart canvas
+  var layoutChart = new Chart(ctx, {
+    type: "doughnut",
+    data: layoutData,
+    options: { 
+      legend: {
+          labels: {
+              fontColor: "white",
+              fontSize: 16
+          }
+      },
+    }
+  });
+</script>
+
+{% endblock content %}

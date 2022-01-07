@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 from .GraphController import run_graph
 from .UserController import save_user, get_user_count, get_user_count_having_files
 from .SNAController import get_rate, save_sna
-from .FileController import extract_file, get_length, save_fileinfo
+from .FileController import extract_file, get_length, save_fileinfo, get_avg_channel_length_in_files, get_avg_user_length_in_files
 
 from flask import current_app as app
 
@@ -67,9 +67,9 @@ def calculate_SNA(file_id):
     fname = session.get("current_foldername")
     metric_id = session.get("metric")
     layout_id = session.get("layout")
-    """
+    
     sna_id = save_sna(layout_id, metric_id, file_id)
-    """
+    
     data = run_graph(metric_id = metric_id, layout_id = layout_id, foldername=fname)
     if data:
         session["graph_data"] = data
@@ -81,19 +81,20 @@ def evaluate_metric_layout():
     if request.method == "POST":
         step = int(request.form["step"])
         foldername = session["current_foldername"]
-        file_id = None
         if step == 1:
             res = extract_file()
-            """
+            
             user_length = get_length(foldername, "users.json")
             channels_length = get_length(foldername, "channels.json")
 
-            file_id = save_fileinfo(session["current_client_id"], session["current_file_size"], channels_length, user_length)
-            """
+            file_id = save_fileinfo(session["current_client_id"], str(session["current_file_size"]), channels_length, user_length, session["current_foldername"])
+
+            session["current_file_id"] = file_id
 
             return jsonify({'data': res})
         
         if step == 2:
+            file_id = session.get("current_file_id")
             res = calculate_SNA(file_id)
             return jsonify({'data': res})
         
@@ -110,21 +111,19 @@ def graph_page():
     data = session.get("graph_data")
     return render_template("graph.html", channels=data)
 
-
-"""
-def home_page():
+def statistics_page():
+    total_user = get_user_count()
+    user_having_files = get_user_count_having_files()
+    avg_channel_length_in_files = get_avg_channel_length_in_files()
+    avg_user_length_in_files = get_avg_user_length_in_files()
+    metric_labels, metrics_rate, metric_ids = get_rate("metric")
+    layout_labels, layouts_rate, layout_ids= get_rate("layout")
+    colors = ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
+             for i in range(max(len(metric_labels), len(layout_labels)))]
     
-    print(f"Current Client ID: {session.get('current_client_id')}")
-    print(f"{get_user_count()}")
-    print(f"{get_user_count_having_files()}")
-
-    metric_labels, metrics_rate = get_rate("metric")
-    print(metric_labels)
-    print(metrics_rate)
-    
-    layout_labels, layouts_rate = get_rate("layout")
-    print(layout_labels)
-    print(layouts_rate)
-    
-    return render_template("app.html")
-"""
+    return render_template("statistics.html", colors=colors, layout_data=[layout_labels, layouts_rate, layout_ids], metric_data=[metric_labels, metrics_rate, metric_ids], data={
+        "total_user": total_user,
+        "user_having_files": user_having_files,
+        "avg_channel_length_in_files": avg_channel_length_in_files,
+        "avg_user_length_in_files": avg_user_length_in_files,
+    })

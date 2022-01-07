@@ -1,5 +1,4 @@
 import datetime
-from os import stat
 import src.models.DB as DB
 import src.models.FileInfo
 
@@ -23,6 +22,7 @@ class SNAPreferencesQuery():
     def save_sna(self) -> int:
         db.session.add(self.sna)
         db.session.commit()
+        return self.sna.id
         
 
     @staticmethod

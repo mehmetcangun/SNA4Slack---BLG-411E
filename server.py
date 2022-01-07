@@ -14,8 +14,11 @@ app.add_url_rule("/graph", view_func=AppController.graph_page, methods=['GET', '
 
 @app.errorhandler(404)
 def page_not_found(e):
-    # note that we set the 404 status explicitly
     return render_template('404.html'), 404
+
+@app.errorhandler(403)
+def page_no_authorization(e):
+  return render_template('403.html'), 403
 
 if __name__ == "__main__":
     from src.models.DB import db, migrate

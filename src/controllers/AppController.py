@@ -14,8 +14,11 @@ from flask import current_app as app
 
 ALLOWED_EXTENSIONS = {'zip'}
 
-def upload_page():
+def update_user_count():
     session["total_user"] = get_user_count()
+    return jsonify({'data': True})
+
+def upload_page():
     
     if request.method == "GET":
         if not session.get("current_client_id"):

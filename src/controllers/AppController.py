@@ -109,7 +109,11 @@ def progress_bar_page():
 
 def graph_page():
     data = session.get("graph_data")
-    return render_template("graph.html", channels=data)
+    metric = session.get("metric")
+    layout = session.get("layout")
+    metric = app.config["METRIC"][metric]
+    layout = app.config["LAYOUT"][layout]
+    return render_template("graph.html", channels=data, metric=metric, layout=layout)
 
 def statistics_page():
     total_user = get_user_count()

@@ -5,10 +5,10 @@
 
 <div class="container text-center">
     <h1 class="display-3">Statistics</h1>
-    <div>Total User: {{ data.total_user }}</div>
-    <div>user_having_files: {{ data.user_having_files }}</div>
-    <div>avg_channel_length_in_files: {{ data.avg_channel_length_in_files }}</div>
-    <div>avg_user_length_in_files: {{ data.avg_user_length_in_files }}</div>
+    <div class="charts">
+      <canvas id="userChart" width="600" height="400"></canvas>
+      <canvas id="channelChart" width="600" height="400"></canvas>
+    </div>
     
     <div class="charts">
         <canvas id="metricChart" width="600" height="400"></canvas>
@@ -70,12 +70,92 @@
     ],
   };
   // get chart canvas
-  var ctx = document.getElementById("layoutChart").getContext("2d");
+  var ctx1 = document.getElementById("layoutChart").getContext("2d");
   // create the chart using the chart canvas
-  var layoutChart = new Chart(ctx, {
+  var layoutChart = new Chart(ctx1, {
     type: "doughnut",
     data: layoutData,
     options: { 
+      legend: {
+          labels: {
+              fontColor: "white",
+              fontSize: 16
+          }
+      },
+    }
+  });
+  // User Chart
+  const userdata = {
+  labels: ["Total User", "User Having Files"],
+  datasets: [{
+    barPercentage: 1,
+    label: 'User Statistic',
+    data: [ {{ data.total_user }}, {{ data.user_having_files }} ],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+    ],
+    borderWidth: 1
+    }]
+  };
+
+  var ctx2 = document.getElementById("userChart").getContext("2d");
+
+  var userChart = new Chart(ctx2, {
+    type: "bar",
+    data: userdata,
+    options: {
+      scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+      },
+      legend: {
+          labels: {
+              fontColor: "white",
+              fontSize: 16
+          }
+      },
+    }
+  });
+
+  const channelData = {
+  labels: ["Avg. Channel Length in Files", "Avg. User Length in Files"],
+  datasets: [{
+    barPercentage: 1,
+    label: 'Channel Statistic',
+    data: [ {{ data.avg_channel_length_in_files }}, {{ data.avg_user_length_in_files }} ],
+    backgroundColor: [
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+    ],
+    borderColor: [
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+    ],
+    borderWidth: 1
+    }]
+  };
+
+  var ctx3 = document.getElementById("channelChart").getContext("2d");
+
+  var channelChart = new Chart(ctx3, {
+    type: "bar",
+    data: channelData,
+    options: { 
+      scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+      },
       legend: {
           labels: {
               fontColor: "white",

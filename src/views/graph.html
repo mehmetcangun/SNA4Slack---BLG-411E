@@ -5,20 +5,30 @@
 
 <div class="container">
     <h1 class="display-4 text-center">SNA Analysis</h1>
-    <h3 class="font-sm text-left">Node: User | Edge: Reply</h3>
-    <a href="/preference">Select New Metric</a>
+    <div class="row">
+        <div class="col-6 text-left align-self-center">
+            <h4 class="font-sm">Node: User | Edge: Reply</h4>
+        </div>
+        <div class="offset-2 col-4 text-right text-wrap">
+            <h4 class="font-sm">Current Metric: {{ metric }}</h4>
+            <h4 class="font-sm">Current Layout: {{ layout }}</h4>
+        </div>
+    </div>
+    <div class="w-100 text-right">
+        <a class="btn btn-secondary" href="/preference">Select New Metric/Layout</a>
+    </div>
 </div>
 
 <div class="container">
 {%for channel in channels %}
-    <div class="card my-3">
+    <div class="card my-3 p-3">
         <div class="card-header bg-dark">
             <h1 class="display-5 card-title">{{ channel.name }}</h1>
         </div>
         <div class="card-body">
             <img src="{{ channel.img }}" class="rounded mx-auto d-block"  alt="{{ channel.name }}">
         </div>
-        <table id="dt-table" class="display table table-dark">
+        <table id="dt-table" class="display table table-light">
             <thead>
                 {% if channel.metric_id == 0 or channel.metric_id == 2 %}
                     <tr>

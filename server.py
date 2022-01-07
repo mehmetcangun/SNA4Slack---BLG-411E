@@ -19,6 +19,7 @@ app.add_url_rule("/evaluate_metric_layout", view_func=AppController.evaluate_met
 app.add_url_rule("/progress_bar", view_func=AppController.progress_bar_page, methods=['GET', 'POST'])
 app.add_url_rule("/graph", view_func=AppController.graph_page, methods=['GET'])
 app.add_url_rule("/statistics", view_func=AppController.statistics_page, methods=['GET'])
+app.add_url_rule("/update_user_count", view_func=AppController.update_user_count, methods=['GET'])
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -32,15 +33,13 @@ def trigger_delete_file():
         check_path = os.path.join(app.config['UPLOAD_FOLDER'], i)
         if os.path.isdir(check_path):
             elapsed_time = time.gmtime(time.time() - os.path.getmtime(check_path))
-            """TEST"""
-            if elapsed_time.tm_min >= 2:
+            
+            if app.config["DELETE_ELAPSED_STATUS"] == "minutes" and elapsed_time.tm_min >= int(app.config["DELETE_ELAPSED_TIME_VALUE"]):
                 to_be_deleted.append(check_path)
             
-            """
-            if elapsed_time.tm_hour >= 24:
+            if app.config["DELETE_ELAPSED_STATUS"] == "hours" and elapsed_time.tm_ >= int(app.config["DELETE_ELAPSED_TIME_VALUE"]):
                 to_be_deleted.append(check_path)
-            """
-        
+
     for i in to_be_deleted:
         shutil.rmtree(i)
 

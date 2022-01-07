@@ -31,18 +31,18 @@ def upload_page():
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
+        
         file = request.files['file']
-        
-        if not file.filename.endswith("zip"):
-            flash('This file extension is not allowed')
-            print("Error 1")
-            return redirect(request.url)
-        
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
+        
+        if not file.filename.endswith("zip"):
+            flash('This file extension is not allowed')
+            return redirect(request.url)
+        
         if file:
             guid = uuid.uuid4().hex
             foldername = secure_filename(guid)

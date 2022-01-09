@@ -8,10 +8,12 @@ from flask_apscheduler import APScheduler
 
 from src.routes import *
 from src.controllers import AppController
+from src.models.DB import db, migrate
 
 app = Flask(__name__, template_folder="src/views")
-
 app.config.from_object('config')
+db.init_app(app)
+migrate.init_app(app, db)
 
 app.add_url_rule("/", view_func=AppController.upload_page, methods=['GET', 'POST'])
 app.add_url_rule("/preference", view_func=AppController.preference_page, methods=['GET'])
@@ -47,9 +49,7 @@ def trigger_delete_file():
 
 
 if __name__ == "__main__":
-    from src.models.DB import db, migrate
-    db.init_app(app)
-    migrate.init_app(app, db)
+    
     scheduler = APScheduler()
     scheduler.init_app(app)
     scheduler.start()

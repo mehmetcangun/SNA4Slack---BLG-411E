@@ -1,10 +1,11 @@
 
 import unittest
 
-import src.models.SNAPreference as sna_pref
+from src.models.SNAPreference import SNAPreferences, SNAPreferencesQuery
 from tests.test_base_case import BaseTestCase
 
 class SNATestCase(BaseTestCase):
+
     def setUp(self) -> None:
         self.check_type = ["string", 1.5, True, list(), dict(), tuple()]
         self.selected_key = int(max(self.app.config["METRIC"].keys())) + 1
@@ -17,43 +18,43 @@ class SNATestCase(BaseTestCase):
 
     # check instance
     def test_sna_instance(self):
-        sna_pref_var = sna_pref.SNAPreferencesQuery(1,2,3)
-        self.assertIsInstance(sna_pref_var.sna, sna_pref.SNAPreferences)
+        sna_pref_var = SNAPreferencesQuery(1,2,3)
+        self.assertIsInstance(sna_pref_var.sna, SNAPreferences)
     
     # check type
     def test_metric_id_type(self):
         for checktyp in self.check_type:
             print(checktyp)
-            self.assertRaises(TypeError, sna_pref.SNAPreferencesQuery(checktyp, 1, 2))
+            self.assertRaises(TypeError, SNAPreferencesQuery(checktyp, 1, 2))
 
     def test_layout_id_type(self):
         for checktyp in self.check_type:
-            self.assertRaises(TypeError, sna_pref.SNAPreferencesQuery(1, checktyp, 2))
+            self.assertRaises(TypeError, SNAPreferencesQuery(1, checktyp, 2))
         
     def test_file_id_type(self):
         for checktyp in self.check_type:
-            self.assertRaises(TypeError, sna_pref.SNAPreferencesQuery(1, 2, checktyp))
+            self.assertRaises(TypeError, SNAPreferencesQuery(1, 2, checktyp))
 
     # check existence
     def test_metric_id_existence(self):
-        self.assertRaises(KeyError, sna_pref.SNAPreferencesQuery(1, 2, self.selected_key))
+        self.assertRaises(KeyError, SNAPreferencesQuery(1, 2, self.selected_key))
 
     def test_layout_id_existence(self):
-        self.assertRaises(KeyError, sna_pref.SNAPreferencesQuery(1, 2, self.selected_key))
+        self.assertRaises(KeyError, SNAPreferencesQuery(1, 2, self.selected_key))
 
     def test_file_id_existence(self):
         selected_file_id = 0
-        self.assertRaises(KeyError, sna_pref.SNAPreferencesQuery(1, 2, selected_file_id))
+        self.assertRaises(KeyError, SNAPreferencesQuery(1, 2, selected_file_id))
     
     # check positive
     def test_metric_id_positive_integer(self):
-        self.assertRaises(ValueError, sna_pref.SNAPreferencesQuery(-1, 0, 0))
+        self.assertRaises(ValueError, SNAPreferencesQuery(-1, 0, 0))
 
     def test_layout_id_positive_integer(self):
-        self.assertRaises(ValueError, sna_pref.SNAPreferencesQuery(0, -1, 0))
+        self.assertRaises(ValueError, SNAPreferencesQuery(0, -1, 0))
     
     def test_file_id_positive_integer(self):
-        self.assertRaises(ValueError, sna_pref.SNAPreferencesQuery(0, 0, -1))
+        self.assertRaises(ValueError, SNAPreferencesQuery(0, 0, -1))
 
     #check_file_id_exist_in_database
     """

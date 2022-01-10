@@ -20,9 +20,10 @@ class SNAPreferencesQuery():
     sna = None
     
     def __init__(self, metric_id, layout_id, file_id) -> None:
-        """
         if type(metric_id) is not int or type(layout_id) is not int or type(file_id) is not int:
             raise TypeError
+        
+        """
         
         if metric_id < 0 or metric_id >= len(app.config["METRIC"]):
             raise ValueError("The value must be greater than 0 and less than the initial METRIC size")

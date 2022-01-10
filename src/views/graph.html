@@ -27,6 +27,9 @@
         </div>
         <div class="card-body">
             <img src="{{ channel.img }}" class="rounded mx-auto d-block"  alt="{{ channel.name }}">
+            <a href="{{ channel.img }}" class="btn btn-warning px-5" target="_blank" download>
+                Download The Image
+            </a>
         </div>
         <table id="dt-table" class="display table table-light">
             <thead>
@@ -62,23 +65,6 @@
                 
             </tbody>
         </table>
-        <!--
-            metric_id ye göre listeleme uygulanacak.
-            (table eklenerek de çözebilirz, datatable)
-            metric_id=0, 1 ise dictionary
-            metric_id=2 ise tuple.
-
-        degree_centrality: show can be sorted.
-        {'omertopal46': 0.6000000000000001, 'bernaakay': 0.2, 'muhammedsalihyildiz18': 0.2, 'mehmet-can-gun': 0.0, 'mehmetcangun14': 0.4, 'mehmetcaangun': 0.2}
-
-        bridges: show bridged users. connected
-        [('omertopal46', 'mehmetcaangun'), ('omertopal46', 'mehmetcangun14'), ('omertopal46', 'bernaakay'), ('muhammedsalihyildiz18', 'mehmetcangun14')]
-
-        pagerank: show with sorted high score. ul, li Sorted table. 
-        - parse keys as user_id
-        {'U02S7NX6HLN': 0.3062042500445877, 'U02S7NZD0MC': 0.1332350919390944, 'U02T33ARC81': 0.17136191876852694, 'U02T608HGQH': 0.02912621359223301, 'U02TE5XCZGQ': 0.2788918728898947, 'U02TH2VHX40': 0.08118065276566372}
-        -->
-
     </div>
 {%endfor%}
 </div>

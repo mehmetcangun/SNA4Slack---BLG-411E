@@ -22,13 +22,41 @@
     <script src="{{ url_for('static', filename='Chart.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script>
+      $(document).ready(function() {
+        $.get("/update_user_count", {}, (res) => {
+          if(res.status) {
+            console.log("hey")
+            $("#data_total_user").text("Total User: "+res.data)
+          } else {
+            $("#data_total_user").text("")
+          }
+        })
+      })
+    </script>
     
+
     <title>{% block title %}{% endblock %}</title>
     
   </head>
   <body>
     <header>
-      {% include "includes/navbar.html" %}
+      <nav class="navbar navbar-expand " style="background-color: #3B3636;">
+        <div class="container" style="display: flex; justify-content: center; align-items: center;">
+          <a class="navbar-brand" href="/">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111615.png" height="50" alt="">
+          </a>
+        </div>  
+        <div class="container" style="display: flex; justify-content: center; align-items: center;">
+          <a class="nav-item" id="data_total_user" style="color: #FFFFFF; font-weight: 750; font-size: x-large; display: flex; justify-content: center; align-items: center; text-justify: center;"> 
+          </a>
+        </div> 
+        <div class="container" style="display: flex; justify-content: center; align-items: center;">
+          <a class="nav-item nav-link" href="/statistics" style="color: #FFFFFF; font-weight: 750; font-size: x-large;">Statistics</a>
+          <a class="nav-item nav-link" href="/" style="color: #FFFFFF; font-weight: 750; font-size: x-large;">New SNA</a>
+        </div> 
+          
+      </nav>
     </header>
     <section class="container-fluid mb-5 py-5 bg-dark bg-opacity-90 text-center">
       {% block content %}{% endblock %}
@@ -54,7 +82,13 @@
 
     <script>
       $(document).ready(function() {
-        $.get("/update_user_count", {})
+        $.get("/update_user_count", {}, (res) => {
+          if(res.status) {
+            $("#data_total_user").text("Total User: "+res.data)
+          } else {
+            $("#data_total_user").text("")
+          }
+        })
       })
     </script>
 

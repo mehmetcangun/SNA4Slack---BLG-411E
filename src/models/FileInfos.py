@@ -1,9 +1,8 @@
 import datetime
-from itertools import count
 
 import src.models.DB as DB
-import src.models.User
-import src.models.SNAPreferences
+import src.models.Users as user
+import src.models.SNAPreference as sna_pref
 
 db = DB.db
 class FileInfo(db.Model):

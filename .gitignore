@@ -13,3 +13,4 @@ docs/build/
 
 static/uploads/*
 !static/uploads/.gitkeep
+.vscode/settings.json

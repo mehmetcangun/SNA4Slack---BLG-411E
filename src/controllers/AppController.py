@@ -15,8 +15,10 @@ from flask import current_app as app
 ALLOWED_EXTENSIONS = {'zip'}
 
 def update_user_count():
-    session["total_user"] = get_user_count()
-    return jsonify({'data': True})
+    total_user = get_user_count()
+    if total_user > 0:
+        return jsonify({'data': total_user, 'status': True})
+    return jsonify({'status': False})
 
 def upload_page():
     

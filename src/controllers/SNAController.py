@@ -1,9 +1,9 @@
-from ..models.SNAPreferences import SNAPreferencesQuery
+import src.models.SNAPreference as sna_pref
 from flask import current_app as app
 
 def get_rate(which):
-    rate_list = SNAPreferencesQuery.find_rate(which)
-    total_sna_count = SNAPreferencesQuery.find_total_count() 
+    rate_list = sna_pref.SNAPreferencesQuery.find_rate(which)
+    total_sna_count = sna_pref.SNAPreferencesQuery.find_total_count() 
     which_full_list = app.config[str(which).upper()]
     labels = []
     data = []
@@ -17,4 +17,4 @@ def get_rate(which):
     return labels, data, ids
 
 def save_sna(layout_id, metric_id, file_id):
-    return SNAPreferencesQuery(layout_id=layout_id, metric_id=metric_id, file_id=file_id).save_sna()
+    return sna_pref.SNAPreferencesQuery(layout_id=layout_id, metric_id=metric_id, file_id=file_id).save_sna()

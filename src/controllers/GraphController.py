@@ -74,10 +74,13 @@ def run_graph(metric_id, layout_id, foldername):
     G,subgraphs = read_all(foldername, channel_names, userlist_id_name_dict)
     draw_graph(G, layout_id, userlist_id_name_dict)
     graph_name = "[CREATED BY THE SYSTEM] Total Result for all channels"
-    path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output", graph_name+".png")
-    plt.savefig(path, format="PNG")
+    path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output", graph_name)
+    
+    
     plt.clf()
+    plt.savefig(path, format="PNG")
 
+    plt.clf()
     general_metric = metric_calc(G, metric_id, userlist_id_name_dict)
 
     subgraphs_drawed = []

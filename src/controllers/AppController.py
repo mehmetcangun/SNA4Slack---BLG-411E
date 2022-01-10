@@ -108,8 +108,17 @@ def evaluate_metric_layout():
     return redirect('/')
 
 def progress_bar_page():
+    if 'metric'not in request.form.keys() or 'layout' not in request.form.keys():
+        flash("Please choose proper metric and layout.")
+        return redirect(request.referrer)
     metric = request.form['metric']
     layout = request.form['layout']
+    if int(metric) not in list(app.config["METRIC"].keys()):
+        flash("Please choose a valid metric.")
+        return redirect(request.referrer)
+    if int(layout) not in list(app.config["LAYOUT"].keys()):
+        flash("Please choose a valid layout.")
+        return redirect(request.referrer)
     session["metric"] = int(metric)
     session["layout"] = int(layout)
     return render_template("progress_bar.html")

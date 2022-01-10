@@ -3,6 +3,7 @@ import random
 import uuid
 
 from flask import flash, request, redirect, render_template, session, jsonify
+from flask.helpers import url_for
 from werkzeug.utils import secure_filename
 
 from .GraphController import run_graph
@@ -56,7 +57,7 @@ def upload_page():
             session["current_file_size"] = file.content_length
             session["current_foldername"] = foldername
 
-            return redirect("/preference")
+            return redirect(url_for("preference_page"))
     
     return render_template("upload.html")
 

@@ -35,28 +35,12 @@
       })
     </script>
     
-
     <title>{% block title %}{% endblock %}</title>
     
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand " style="background-color: #3B3636;">
-        <div class="container" style="display: flex; justify-content: center; align-items: center;">
-          <a class="navbar-brand" href="/">
-            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111615.png" height="50" alt="">
-          </a>
-        </div>  
-        <div class="container" style="display: flex; justify-content: center; align-items: center;">
-          <a class="nav-item" id="data_total_user" style="color: #FFFFFF; font-weight: 750; font-size: x-large; display: flex; justify-content: center; align-items: center; text-justify: center;"> 
-          </a>
-        </div> 
-        <div class="container" style="display: flex; justify-content: center; align-items: center;">
-          <a class="nav-item nav-link" href="/statistics" style="color: #FFFFFF; font-weight: 750; font-size: x-large;">Statistics</a>
-          <a class="nav-item nav-link" href="/" style="color: #FFFFFF; font-weight: 750; font-size: x-large;">New SNA</a>
-        </div> 
-          
-      </nav>
+      {% include "includes/navbar.html" %}
     </header>
     <section class="container-fluid mb-5 py-5 bg-dark bg-opacity-90 text-center">
       {% block content %}{% endblock %}

@@ -13,4 +13,4 @@ docs/build/
 
 static/uploads/*
 !static/uploads/.gitkeep
-tests/uploadPage_Test.py
+.vscode/settings.json

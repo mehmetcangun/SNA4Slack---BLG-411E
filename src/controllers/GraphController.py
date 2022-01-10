@@ -2,6 +2,7 @@ import json
 import glob
 import os
 import copy
+import uuid
 
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -70,13 +71,18 @@ def draw_graph(graph, layout_id, userlist_id_name_dict):
 def run_graph(metric_id, layout_id, foldername):
     userlist_id_name_dict = {}
     channel_names = []
+    plt.switch_backend('agg')
 
     G,subgraphs = read_all(foldername, channel_names, userlist_id_name_dict)
     draw_graph(G, layout_id, userlist_id_name_dict)
     graph_name = "[CREATED BY THE SYSTEM] Total Result for all channels"
-    path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output", graph_name+".png")
+    guid = uuid.uuid4().hex
+    path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output", guid+".png")
+    
+    
     plt.savefig(path, format="PNG")
     plt.clf()
+    
 
     general_metric = metric_calc(G, metric_id, userlist_id_name_dict)
 
@@ -89,12 +95,14 @@ def run_graph(metric_id, layout_id, foldername):
     })
 
     for index, graph in enumerate(subgraphs):
+        
+        #plt.switch_backend('agg')
         draw_graph(graph, layout_id, userlist_id_name_dict)
         graph_name = channel_names[index] + ".png"
         path = os.path.join(app.config['UPLOAD_FOLDER'], foldername, "output", graph_name)
         plt.savefig(path, format="PNG")
         
-        channel_metric = metric_calc(graph, metric_id, userlist_id_name_dict) # check?
+        channel_metric = metric_calc(graph, metric_id, userlist_id_name_dict)
 
         subgraphs_drawed.append({
             "name": channel_names[index], 
@@ -103,6 +111,7 @@ def run_graph(metric_id, layout_id, foldername):
             "metric_id": metric_id
         })
         plt.clf()
+
 
     return subgraphs_drawed
 

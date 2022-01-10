@@ -10,26 +10,34 @@ from src.routes import *
 from src.controllers import AppController
 from src.models.DB import db, migrate
 
-app = Flask(__name__, template_folder="src/views")
-app.config.from_object('config')
-db.init_app(app)
-migrate.init_app(app, db)
+def create_app(config_path):
+    app = Flask(__name__, template_folder="src/views")
+    app.config.from_object(config_path)
+    db.init_app(app)
+    migrate.init_app(app, db)
 
-app.add_url_rule("/", view_func=AppController.upload_page, methods=['GET', 'POST'])
-app.add_url_rule("/preference", view_func=AppController.preference_page, methods=['GET'])
-app.add_url_rule("/evaluate_metric_layout", view_func=AppController.evaluate_metric_layout, methods=['GET', 'POST'])
-app.add_url_rule("/progress_bar", view_func=AppController.progress_bar_page, methods=['GET', 'POST'])
-app.add_url_rule("/graph", view_func=AppController.graph_page, methods=['GET'])
-app.add_url_rule("/statistics", view_func=AppController.statistics_page, methods=['GET'])
-app.add_url_rule("/update_user_count", view_func=AppController.update_user_count, methods=['GET'])
+    app.add_url_rule("/", view_func=AppController.upload_page, methods=['GET', 'POST'])
+    app.add_url_rule("/preference", view_func=AppController.preference_page, methods=['GET'])
+    app.add_url_rule("/evaluate_metric_layout", view_func=AppController.evaluate_metric_layout, methods=['GET', 'POST'])
+    app.add_url_rule("/progress_bar", view_func=AppController.progress_bar_page, methods=['GET', 'POST'])
+    app.add_url_rule("/graph", view_func=AppController.graph_page, methods=['GET'])
+    app.add_url_rule("/statistics", view_func=AppController.statistics_page, methods=['GET'])
+    app.add_url_rule("/update_user_count", view_func=AppController.update_user_count, methods=['GET'])
 
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'), 404
 
-@app.errorhandler(403)
-def page_no_authorization(e):
-  return render_template('403.html'), 403
+    @app.errorhandler(403)
+    def page_no_authorization(e):
+        return render_template('403.html'), 403
+
+    scheduler = APScheduler()
+    scheduler.init_app(app)
+    scheduler.start()
+    
+    return app
+
 
 def trigger_delete_file():
     to_be_deleted = list()    
@@ -41,19 +49,15 @@ def trigger_delete_file():
             if app.config["DELETE_ELAPSED_STATUS"] == "minutes" and elapsed_time.tm_min >= int(app.config["DELETE_ELAPSED_TIME_VALUE"]):
                 to_be_deleted.append(check_path)
             
-            if app.config["DELETE_ELAPSED_STATUS"] == "hours" and elapsed_time.tm_ >= int(app.config["DELETE_ELAPSED_TIME_VALUE"]):
+            if app.config["DELETE_ELAPSED_STATUS"] == "hours" and elapsed_time.tm_hour >= int(app.config["DELETE_ELAPSED_TIME_VALUE"]):
                 to_be_deleted.append(check_path)
 
     for i in to_be_deleted:
         shutil.rmtree(i)
 
 
-if __name__ == "__main__":
-    
-    scheduler = APScheduler()
-    scheduler.init_app(app)
-    scheduler.start()
-    app.apscheduler.add_job(
+app = create_app("config")
+app.apscheduler.add_job(
         timezone=utc, 
         func=trigger_delete_file, 
         trigger='interval', 
@@ -62,6 +66,20 @@ if __name__ == "__main__":
         days=app.config["WAIT_IN_DAYS"],
         id="delete_task")
 
+
+if __name__ == "__main__":
+
+    print(0 in app.config["METRIC"].keys())
+    print("0" in app.config["METRIC"].keys())
+    print(-1 in app.config["METRIC"].keys())
+    
+    check_type = ["string", 1, 1.5, True, list(), dict(), tuple()]
+    import src.models.SNAPreference as sna_pref
+    
+    #app.config[""]
+
     app.run()
+
+    
 
  

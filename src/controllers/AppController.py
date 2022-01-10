@@ -3,6 +3,7 @@ import random
 import uuid
 
 from flask import flash, request, redirect, render_template, session, jsonify
+from flask.helpers import url_for
 from werkzeug.utils import secure_filename
 
 from .GraphController import run_graph
@@ -15,8 +16,10 @@ from flask import current_app as app
 ALLOWED_EXTENSIONS = {'zip'}
 
 def update_user_count():
-    session["total_user"] = get_user_count()
-    return jsonify({'data': True})
+    total_user = get_user_count()
+    if total_user > 0:
+        return jsonify({'data': total_user, 'status': True})
+    return jsonify({'status': False})
 
 def upload_page():
     
@@ -54,7 +57,7 @@ def upload_page():
             session["current_file_size"] = file.content_length
             session["current_foldername"] = foldername
 
-            return redirect("/preference")
+            return redirect(url_for("preference_page"))
     
     return render_template("upload.html")
 

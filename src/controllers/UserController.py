@@ -1,4 +1,4 @@
-from ..models.User import UserQuery
+from ..models.Users import UserQuery
 from flask import session
 
 def save_user(ip_address, device_type):

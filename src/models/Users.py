@@ -1,9 +1,7 @@
-from os import stat
 import src.models.DB as DB
-import src.models.FileInfo as FileInfo
+import src.models.FileInfos as fi
 
 db = DB.db
-fileinfo = FileInfo.FileInfo
 
 class User(db.Model):
     __tablename__ = "users"
@@ -34,6 +32,6 @@ class UserQuery():
     
     @staticmethod
     def find_user_count_having_files() -> int:
-        return db.session.query(User).join(FileInfo.FileInfo).distinct().count()
+        return db.session.query(User).join(fi.FileInfo).distinct().count()
 
     

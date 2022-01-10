@@ -1,11 +1,13 @@
-from ..models.FileInfo import FileInfoQuery
-from flask import current_app as app, session
-from zipfile import ZipFile
 import os
 import json
 
+from flask import current_app as app, session
+from zipfile import ZipFile
+
+import src.models.FileInfos as fi
+
 def save_fileinfo(user_id, file_size, channel_length, user_length, folder_name):
-    return FileInfoQuery(user_id=user_id, file_size=file_size, channel_length=channel_length, user_length=user_length, folder_name=folder_name).save_fileinfo()
+    return fi.FileInfoQuery(user_id=user_id, file_size=file_size, channel_length=channel_length, user_length=user_length, folder_name=folder_name).save_fileinfo()
 
 def get_length(foldername, type):
     list_f = open(os.path.join(app.config['UPLOAD_FOLDER'], foldername, "extract", type))
@@ -31,10 +33,10 @@ def extract_file():
             return False
 
 def update_is_deleted(folder_name) -> bool:
-    return FileInfoQuery.update_is_deleted(folder_name)
+    return fi.FileInfoQuery.update_is_deleted(folder_name)
 
 def get_avg_channel_length_in_files() -> float:
-    return FileInfoQuery.find_avg_channel_length_in_files()
+    return fi.FileInfoQuery.find_avg_channel_length_in_files()
 
 def get_avg_user_length_in_files() -> float:
-    return FileInfoQuery.get_avg_user_length_in_files()
+    return fi.FileInfoQuery.get_avg_user_length_in_files()

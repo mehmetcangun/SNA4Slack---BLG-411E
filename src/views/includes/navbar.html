@@ -1,22 +1,15 @@
 <nav class="navbar navbar-expand " style="background-color: #3B3636;">
   <div class="container" style="display: flex; justify-content: center; align-items: center;">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="{{ url_for('upload_page') }}">
       <img src="https://cdn-icons-png.flaticon.com/512/2111/2111615.png" height="50" alt="">
     </a>
   </div>  
   <div class="container" style="display: flex; justify-content: center; align-items: center;">
-    <a class="nav-item" style="color: #FFFFFF; font-weight: 750; font-size: x-large; display: flex; justify-content: center; align-items: center; text-justify: center;"> 
-      Total User: 
-      {% if session.total_user %}
-        {{ session.total_user }}
-      {% else %}
-        0
-      {% endif %} 
+    <a class="nav-item" id="data_total_user" style="color: #FFFFFF; font-weight: 750; font-size: x-large; display: flex; justify-content: center; align-items: center; text-justify: center;"> 
     </a>
   </div> 
   <div class="container" style="display: flex; justify-content: center; align-items: center;">
-    <a class="nav-item nav-link" href="/statistics" style="color: #FFFFFF; font-weight: 750; font-size: x-large;">Statistics</a>
-    <a class="nav-item nav-link" href="/" style="color: #FFFFFF; font-weight: 750; font-size: x-large;">New SNA</a>
+    <a class="nav-item nav-link" href="{{ url_for('statistics_page') }}" style="color: #FFFFFF; font-weight: 750; font-size: x-large;">Statistics</a>
+    <a class="nav-item nav-link" href="{{ url_for('upload_page') }}" style="color: #FFFFFF; font-weight: 750; font-size: x-large;">New SNA</a>
   </div> 
-    
 </nav>

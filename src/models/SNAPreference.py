@@ -1,6 +1,9 @@
 import datetime
 import src.models.DB as DB
-import src.models.FileInfo
+import src.models.FileInfos
+
+from flask import current_app as app
+
 
 db = DB.db
 class SNAPreferences(db.Model):
@@ -17,7 +20,17 @@ class SNAPreferencesQuery():
     sna = None
     
     def __init__(self, metric_id, layout_id, file_id) -> None:
-        self.sna = SNAPreferences(metric_id = metric_id, layout_id = layout_id, file_id=file_id)
+        """
+        if type(metric_id) is not int or type(layout_id) is not int or type(file_id) is not int:
+            raise TypeError
+        
+        if metric_id < 0 or metric_id >= len(app.config["METRIC"]):
+            raise ValueError("The value must be greater than 0 and less than the initial METRIC size")
+        
+        if layout_id >= 0 and layout_id < len(app.config["LAYOUT"]):
+            raise ValueError("The value must be greater than or equal to 0 and less than the initial METRIC size")
+        """
+        self.sna = SNAPreferences(metric_id = metric_id, layout_id = layout_id, file_id = file_id)
     
     def save_sna(self) -> int:
         db.session.add(self.sna)

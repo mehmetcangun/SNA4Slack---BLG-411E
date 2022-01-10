@@ -88,14 +88,15 @@ def evaluate_metric_layout():
         foldername = session["current_foldername"]
         if step == 1:
             res = extract_file()
+            if res != True:
+                return jsonify({'data': res})
             
             user_length = get_length(foldername, "users.json")
             channels_length = get_length(foldername, "channels.json")
 
             file_id = save_fileinfo(session["current_client_id"], str(session["current_file_size"]), channels_length, user_length, session["current_foldername"])
-
+            print(res)
             session["current_file_id"] = file_id
-
             return jsonify({'data': res})
         
         if step == 2:
